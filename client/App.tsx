@@ -25,6 +25,8 @@ export default function App() {
   );
 }
 
+//probando
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
