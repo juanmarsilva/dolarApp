@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import types from './Types.style';
 
-export const Types = ({ compra, venta, tipo }) => {
+export const Types = ({ compra, venta, tipo }: any) => {
 
     return (
         <View style={types.container}>
