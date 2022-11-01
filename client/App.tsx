@@ -1,41 +1,50 @@
-import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, ScrollView } from "react-native";
+import styles from './App.style';
+import { Types } from './Components/Types';
+import { Loading } from './Components/Loading';
+import axios from 'axios';
+// https://cors-solucion.herokuapp.com/
+const URL = 'https://api-dolar-argentina.herokuapp.com/api/'
 
 export default function App() {
+  const [dolar, setDolar] = useState({
+    dolaroficial: {},
+    contadoliqui:{},
+    dolarblue: {}
+  })
+  const [loading, setLoading] = useState(false)
 
-  let [ number, setNumber ] = useState<number>(0);
+  useEffect(() => {
+    const types = ['dolaroficial', 'contadoliqui', 'dolarblue']
+    types.forEach(type => {
+      axios(`${URL}${type}`)
+      .then(res => setDolar({...dolar, [type]:res.data}))
+      .catch(err => console.log(err))
+    })
+  }, [])
 
-  const handleClick = (e: any) => {
-    e.preventDefault();
-    setNumber(number++);
-  }
+  if(!dolar.dolaroficial.compra) return <Loading/>
 
+  const dolarBlueCompra = dolar.dolarblue.compra
+  const dolarBlueVenta = dolar.dolarblue.venta
+
+  const dolarOficialCompra = dolar.dolaroficial.compra
+  const dolarOficialVenta = dolar.dolaroficial.venta
+
+  const dolarCCLCompra = dolar.contadoliqui.compra
+  const dolarCCLVenta = dolar.contadoliqui.venta
   return (
-    <View style={styles.container}>
-      <Button
-        onPress={(e) => handleClick(e)}
-        title="GATO MIRA LO QUE HAGO"
-        color="#4827c2"
-        accessibilityLabel="Learn more about this purple button"
-      />
-      <StatusBar style="auto" />
-      <Text style={styles.text}>{number}</Text>
-    </View>
+    <ScrollView style={styles.container}>
+      <View style={styles.firstDiv}>
+        <Types compra={dolarBlueCompra} venta={dolarBlueVenta} tipo={'Blue'}/>
+      </View>
+      <View style={styles.otherDivs}>
+        <Types compra={dolarOficialCompra} venta={dolarOficialVenta} tipo={'Oficial'}/>
+      </View>
+      <View style={styles.otherDivs}>
+        <Types compra={dolarCCLCompra} venta={dolarCCLVenta} tipo={'CCL'}/>
+      </View>
+    </ScrollView>
   );
 }
-
-//probando
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    marginTop: 30,    
-    fontSize: 30
-  }
-});
