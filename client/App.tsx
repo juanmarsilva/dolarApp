@@ -8,7 +8,7 @@ import axios from 'axios';
 const URL = 'https://api-dolar-argentina.herokuapp.com/api/'
 
 export default function App() {
-  const [dolar, setDolar] = useState({
+  const [dolar, setDolar] = useState<any>({
     dolaroficial: {},
     contadoliqui:{},
     dolarblue: {}
@@ -26,6 +26,8 @@ export default function App() {
 
   if(!dolar.dolaroficial.compra) return <Loading/>
 
+  // probando
+  
   const dolarBlueCompra = dolar.dolarblue.compra
   const dolarBlueVenta = dolar.dolarblue.venta
 
