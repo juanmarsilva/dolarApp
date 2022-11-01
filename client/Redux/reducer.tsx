@@ -1,26 +1,39 @@
 import { TYPES_OF_DOLARS } from "./actions";
 
-interface action {
-    type: string;
-    payload: any;
-}
-
 const initialState = {
     dolar: {
-        oficial: {},
-        blue: {},
-        ccl: {},
-        soja: {},
-        bolsa: {},
-        turista: {}
+        oficial: {
+            compra: 0,
+            venta: 0,
+        },
+        blue: {
+            compra: 0,
+            venta: 0,
+        },
+        ccl: {
+            compra: 0,
+            venta: 0,
+        },
+        soja: {
+            compra: 0,
+            venta: 0,
+        },
+        bolsa: {
+            compra: 0,
+            venta: 0,
+        },
+        turista: {
+            compra: 0,
+            venta: 0,
+        }
     },
 }
 
-export default function reducerRoot (state = initialState, action: action) {
+export default function reducerRoot (state = initialState, action: any): any {
     switch (action.type){
         case TYPES_OF_DOLARS : 
             let oficial = action.payload[0].casa
-            let blue = action.payload[1].casa
+            let dolarBlue = action.payload[1].casa
             let soja = action.payload[2].casa
             let ccl = action.payload[3].casa
             let bolsa = action.payload[4].casa
@@ -33,8 +46,8 @@ export default function reducerRoot (state = initialState, action: action) {
                         venta: oficial.venta
                     },
                     blue: {
-                        compra: blue.compra,
-                        venta: blue.venta
+                        compra: dolarBlue.compra,
+                        venta: dolarBlue.venta
                     },
                     ccl: {
                         compra: ccl.compra,

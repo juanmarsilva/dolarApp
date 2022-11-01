@@ -1,22 +1,17 @@
-import React from 'react';
+import React from "react";
 import { ScrollView } from "react-native";
-import styles from './App.style';
-import { Provider } from 'react-redux';
-import { createStore,  applyMiddleware, compose } from 'redux';
-import rootReducer from "./Redux/reducer";
-import OtherApp from './OtherApp';
-import thunk from "redux-thunk";
+import styles from "./App.style";
+import Home from "./Screens/Home";
+import { Provider } from "react-redux";
+import store from "./Redux/store";
 // https://cors-solucion.herokuapp.com/
 // const URL = 'https://api-dolar-argentina.herokuapp.com/api/'
 
 export default function App() {
-
-  const store = createStore(rootReducer,compose(applyMiddleware(thunk)));
-
   return (
     <Provider store={store}>
       <ScrollView style={styles.container}>
-        <OtherApp />
+        <Home />
       </ScrollView>
     </Provider>
   );
