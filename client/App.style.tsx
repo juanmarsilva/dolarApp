@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
       height: 130,
       marginLeft: 'auto',
       marginRight: 'auto',
-      marginTop: 80,
+      marginTop: 40,
       borderRadius: 12,
       backgroundColor: colors.containersBack
     },
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
       marginLeft: 'auto',
       marginRight: 'auto',
       marginTop: 40,
-      marginBottom: 40,
+      marginBottom: 100,
       borderRadius: 12,
       backgroundColor: colors.containersBack
     }

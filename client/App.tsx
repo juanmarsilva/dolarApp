@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from "./Screens/HomeScreen";
 import ProfileScreen from "./Screens/ProfileScreen";
-import BalanceScreen from "./Screens/BalanceScreen";
+import BalanceScreen from "./Screens/BalanceScreen/BalanceScreen";
 // https://cors-solucion.herokuapp.com/
 // const URL = 'https://api-dolar-argentina.herokuapp.com/api/'
 

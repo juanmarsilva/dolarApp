@@ -3,7 +3,7 @@ import { colors } from '../../App.style';
 
 export const styles = StyleSheet.create({
     container: {
-        position: 'relative',
+        position: 'absolute',
         backgroundColor: colors.otherBackground,
         width: '100%',
         height: 60,
