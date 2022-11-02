@@ -14,10 +14,6 @@ const initialState = {
             compra: 0,
             venta: 0,
         },
-        soja: {
-            compra: 0,
-            venta: 0,
-        },
         bolsa: {
             compra: 0,
             venta: 0,
@@ -34,7 +30,6 @@ export default function reducerRoot (state = initialState, action: any): any {
         case TYPES_OF_DOLARS : 
             let oficial = action.payload[0].casa
             let dolarBlue = action.payload[1].casa
-            let soja = action.payload[2].casa
             let ccl = action.payload[3].casa
             let bolsa = action.payload[4].casa
             let turista = action.payload[6].casa
@@ -52,10 +47,6 @@ export default function reducerRoot (state = initialState, action: any): any {
                     ccl: {
                         compra: ccl.compra,
                         venta: ccl.venta
-                    },
-                    soja: {
-                        compra: soja.compra,
-                        venta: soja.venta
                     },
                     bolsa: {
                         compra: bolsa.compra,

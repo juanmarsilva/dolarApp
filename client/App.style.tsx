@@ -24,6 +24,16 @@ const styles = StyleSheet.create({
       borderRadius: 12,
       backgroundColor: '#C2D4E4'
     },
+    lastDivs: {
+      width: 220,
+      height: 130,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginTop: 40,
+      marginBottom: 40,
+      borderRadius: 12,
+      backgroundColor: '#C2D4E4'
+    }
   });
 
 export default styles
