@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native';
-import { NavBar } from '../Components/NavBar';
+import { NavBar } from '../Components/Navbar/NavBar';
 
 const ProfileScreen = ({ navigation, route }: any ) => {
     return (

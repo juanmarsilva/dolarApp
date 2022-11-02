@@ -1,10 +1,19 @@
 import { StyleSheet } from "react-native";
 
+export const colors = {
+  background:'#353535',
+  otherBackground: '#252524',
+  containersBack: '#344e41',
+  selected: '#338b85',
+  text: '#fff',
+  contrarianText: '#000'
+}
+
 const styles = StyleSheet.create({
     container: {
       width:'100%',
       height:'100%',
-      backgroundColor: '#333236',
+      backgroundColor: colors.background
     },
     firstDiv: {
       width: 220,
@@ -13,7 +22,7 @@ const styles = StyleSheet.create({
       marginRight: 'auto',
       marginTop: 80,
       borderRadius: 12,
-      backgroundColor: '#C2D4E4'
+      backgroundColor: colors.containersBack
     },
     otherDivs: {
       width: 220,
@@ -22,7 +31,7 @@ const styles = StyleSheet.create({
       marginRight: 'auto',
       marginTop: 40,
       borderRadius: 12,
-      backgroundColor: '#C2D4E4'
+      backgroundColor: colors.containersBack
     },
     title: {
       backgroundColor: 'transparent',
@@ -35,7 +44,7 @@ const styles = StyleSheet.create({
       marginTop: 40,
       marginBottom: 40,
       borderRadius: 12,
-      backgroundColor: '#C2D4E4'
+      backgroundColor: colors.containersBack
     }
   });
 
