@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
       borderRadius: 12,
       backgroundColor: '#C2D4E4'
     },
+    title: {
+      backgroundColor: 'transparent',
+    },
     lastDivs: {
       width: 220,
       height: 130,
