@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../App.style";
 
 const firstViewStyle = StyleSheet.create({
     container: {
-      backgroundColor: '#C2D4E4',
+      backgroundColor: 'transparent',
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 12,
@@ -10,13 +11,13 @@ const firstViewStyle = StyleSheet.create({
     },
     title: {
       fontSize: 30,
-      color: '#000'
+      color: colors.text
     },
     text: {
       marginTop: 5,
       marginLeft: 'auto',
       marginRight: 'auto',
-      color: '#000'
+      color: colors.text
     }
   });
 

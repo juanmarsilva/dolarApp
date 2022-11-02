@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { View, ScrollView } from 'react-native';
-import { Types } from "../Components/Types";
+import { Types } from "../Components/Types/Types";
 import styles from "../App.style";
 import { useDispatch, useSelector } from "react-redux";
 import { onTypesOfDolars } from "../Redux/actions";
-import { Loading } from "../Components/Loading";
-import { NavBar } from "../Components/NavBar";
+import { Loading } from "../Components/Loading/Loading";
+import { NavBar } from "../Components/Navbar/NavBar";
 
 export default function Home({navigation, route}: any) {
   const dolar = useSelector<any>((state) => state.dolar);

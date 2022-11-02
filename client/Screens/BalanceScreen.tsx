@@ -1,34 +1,27 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { NavBar } from '../Components/NavBar';
+import React, {useState} from 'react';
+import { View, Text, TextInput } from 'react-native';
+import { NavBar } from '../Components/Navbar/NavBar';
+import balanceStyle from './BalanceScreen.style';
 
 const BalanceScreen = ({navigation, route}: any) => {
+    const [number, setNumber] = useState<number>(1)
+    
     return (
-        <View style={styles.container} >
+        <View style={balanceStyle.container} >
             <View>
-                <Text style={styles.title}>BALANCE</Text>
-                <Text style={styles.title}>PROXIMAMENTE</Text>
+                <Text style={balanceStyle.title}>Pesos</Text>
+                <TextInput
+                    keyboardType='numeric'
+                    onChangeText={text => setNumber(Number(text))}
+                    value={number.toString()}
+                    placeholder='1'
+                    style={balanceStyle.input}
+                />
             </View>
             <NavBar navigation={navigation} route={route} />
         </View>
     );
 };
-
-
-const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#333236',
-        width: '100%',
-        height:'100%',
-        display: 'flex',
-        justifyContent: 'space-between',
-    },
-    title: {
-        fontSize: 40,
-        color: '#fff',
-        alignSelf: 'center',
-    }
-});
 
 export default BalanceScreen;
 
