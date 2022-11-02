@@ -15,7 +15,7 @@ export default function Home({navigation, route}: any) {
     return dispatch(onTypesOfDolars());
   }, []);
 
-  const { blue, oficial, ccl }: any = dolar;
+  const { blue, oficial, ccl, bolsa, turista }: any = dolar;
 
   if (
     !Object.keys(blue).length ||
@@ -37,7 +37,10 @@ export default function Home({navigation, route}: any) {
           <Types compra={ccl.compra} venta={ccl.venta} tipo={"CCL"} />
         </View>
         <View style={styles.otherDivs}>
-          <Types compra={ccl.compra} venta={ccl.venta} tipo={"CCL"} />
+          <Types compra={bolsa.compra} venta={bolsa.venta} tipo={"Bolsa"} />
+        </View>
+        <View style={styles.lastDivs}>
+          <Types compra={turista.compra} venta={turista.venta} tipo={"Turista"} />
         </View>
       </ScrollView>
       <NavBar navigation={navigation} route={route} />
