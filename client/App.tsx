@@ -7,6 +7,7 @@ import Home from "./Screens/Home/HomeScreen";
 import ProfileScreen from "./Screens/Profile/ProfileScreen";
 import BalanceScreen from "./Screens/BalanceScreen/BalanceScreen";
 import {colors} from './App.style';
+import { StatusBar } from "react-native";
 // https://cors-solucion.herokuapp.com/
 // const URL = 'https://api-dolar-argentina.herokuapp.com/api/'
 
@@ -17,6 +18,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
+        <StatusBar backgroundColor={colors.otherBackground} barStyle='light-content' />
         <Stack.Navigator>
           <Stack.Screen
             name="Home"

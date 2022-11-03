@@ -17,8 +17,8 @@ export const styles = StyleSheet.create({
         width: 60,
         borderRadius: 50,
         top: -20,
-        backgroundColor: colors.containersBack,
-        borderColor: colors.containersBack,
+        backgroundColor: colors.buttonContainer,
+        borderColor: colors.buttonContainer,
         borderWidth: .5,
         justifyContent: 'center',
         alignItems: 'center'
@@ -29,8 +29,8 @@ export const styles = StyleSheet.create({
         height: 90,
         borderRadius: 50,
         top: -40,
-        backgroundColor: colors.containersBack,
-        borderColor: colors.containersBack,
+        backgroundColor: colors.buttonContainer,
+        borderColor: colors.buttonContainer,
         borderWidth: .5,
         justifyContent: 'center',
         alignItems: 'center'

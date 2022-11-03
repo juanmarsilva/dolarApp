@@ -6,10 +6,16 @@ import s from './Types.module.css';
 export const Types = ({ compra, venta, tipo }: any) => {
 
     return (
-        <View style={[types.container, s.animation]}>
+        <View style={[types.container]}>
             <Text style={types.title}>Dolar {tipo}</Text>
-                <Text style={types.text}>Compra {compra}</Text>
-                <Text style={types.text}>Venta {venta}</Text>
+            <View style={{flexDirection: 'row'}}>
+                <Text style={[types.text, types.buy]}>COMPRA</Text>
+                <Text style={types.text}> {compra}</Text>
+            </View>
+            <View style={{flexDirection: 'row'}}>
+                <Text style={[types.text, types.sell]}>VENTA</Text>
+                <Text style={types.text}> {venta}</Text>
+            </View>
         </View>
-    )
-}
+    );
+};
