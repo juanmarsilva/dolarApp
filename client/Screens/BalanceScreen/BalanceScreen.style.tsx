@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../App.style";
+import { colors } from "../../App.style";
 
 const balanceStyle = StyleSheet.create({
     container: {
