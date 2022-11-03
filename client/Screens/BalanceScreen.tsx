@@ -2,10 +2,10 @@ import React, { useState, useEffect} from 'react';
 import { View, Text, TextInput, ScrollView } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { useDispatch, useSelector } from 'react-redux';
-import { onTypesOfDolars } from '../../Redux/actions';
-import { NavBar } from '../../Components/Navbar/NavBar';
+import { onTypesOfDolars } from '../Redux/actions';
+import { NavBar } from '../Components/Navbar/NavBar';
 import balanceStyle from './BalanceScreen.style';
-import { Loading } from '../../Components/Loading/Loading';
+import { Loading } from '../Components/Loading/Loading';
 
 const BalanceScreen = ({navigation, route}: any) => {
     const dolar = useSelector<any>((state) => state.dolar);
