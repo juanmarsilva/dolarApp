@@ -5,11 +5,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./Screens/Home/HomeScreen";
 import ProfileScreen from "./Screens/Profile/ProfileScreen";
-import BalanceScreen from "./Screens/Balance/BalanceScreen";
+import BalanceScreen from "./Screens/BalanceScreen/BalanceScreen";
+import {colors} from './App.style';
 // https://cors-solucion.herokuapp.com/
 // const URL = 'https://api-dolar-argentina.herokuapp.com/api/'
 
 const Stack = createNativeStackNavigator();
+
 
 export default function App() {
   return (
@@ -22,9 +24,9 @@ export default function App() {
             options={{
               title: "Home",
               headerStyle: {
-                backgroundColor: "#252524",
+                backgroundColor: colors.otherBackground,
               },
-              headerTintColor: "#dad7cd",
+              headerTintColor: colors.text,
               headerTitleStyle: {
                 fontWeight: "bold",
               },
@@ -36,9 +38,9 @@ export default function App() {
             options={{
               title: "Profile",
               headerStyle: {
-                backgroundColor: "#252524",
+                backgroundColor: colors.otherBackground,
               },
-              headerTintColor: "#dad7cd",
+              headerTintColor: colors.text,
               headerTitleStyle: {
                 fontWeight: "bold",
               },
@@ -50,9 +52,9 @@ export default function App() {
             options={{
               title: "Balance",
               headerStyle: {
-                backgroundColor: "#252524",
+                backgroundColor: colors.otherBackground,
               },
-              headerTintColor: "#dad7cd",
+              headerTintColor: colors.text,
               headerTitleStyle: {
                 fontWeight: "bold",
               },
