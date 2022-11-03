@@ -7,10 +7,10 @@ const firstViewStyle = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 12,
-      margin: 20
+      margin: 5
     },
     title: {
-      fontSize: 30,
+      fontSize: 20,
       color: colors.text
     },
     text: {
@@ -18,6 +18,12 @@ const firstViewStyle = StyleSheet.create({
       marginLeft: 'auto',
       marginRight: 'auto',
       color: colors.text
+    },
+    buy: {
+      color: 'green',
+    },
+    sell: {
+      color: 'red',
     }
   });
 

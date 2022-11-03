@@ -3,10 +3,11 @@ import { StyleSheet } from "react-native";
 export const colors = {
   background:'#353535',
   otherBackground: '#252524',
-  containersBack: '#344e41',
+  containersBack: 'black',
   selected: '#338b85',
   text: '#fff',
-  contrarianText: '#000'
+  contrarianText: '#000',
+  buttonContainer: '#344e41',
 }
 
 const styles = StyleSheet.create({
@@ -16,35 +17,41 @@ const styles = StyleSheet.create({
       backgroundColor: colors.background
     },
     firstDiv: {
-      width: 220,
-      height: 130,
+      width: 140,
+      height: 90,
       marginLeft: 'auto',
       marginRight: 'auto',
       marginTop: 40,
-      borderRadius: 12,
-      backgroundColor: colors.containersBack
+      borderRadius: 8,
+      backgroundColor: colors.containersBack,
     },
-    otherDivs: {
-      width: 220,
-      height: 130,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      marginTop: 40,
-      borderRadius: 12,
-      backgroundColor: colors.containersBack
-    },
+    // otherDivs: {
+    //   width: 140,
+    //   height: 90,
+    //   marginLeft: 'auto',
+    //   marginRight: 'auto',
+    //   marginTop: 40,
+    //   borderRadius: 12,
+    //   backgroundColor: colors.containersBack
+    // },
     title: {
       backgroundColor: 'transparent',
     },
-    lastDivs: {
-      width: 220,
-      height: 130,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      marginTop: 40,
-      marginBottom: 100,
-      borderRadius: 12,
-      backgroundColor: colors.containersBack
+    // lastDivs: {
+    //   width: 140,
+    //   height: 90,
+    //   marginLeft: 'auto',
+    //   marginRight: 'auto',
+    //   marginTop: 40,
+    //   marginBottom: 100,
+    //   borderRadius: 12,
+    //   backgroundColor: colors.containersBack
+    // }, 
+    containerCards: {
+      flexDirection: 'row',
+      width: '100%',
+      height: '100%',
+      flexWrap: 'wrap',
     }
   });
 

@@ -8,6 +8,7 @@ import { Loading } from "../../Components/Loading/Loading";
 import { NavBar } from "../../Components/Navbar/NavBar";
 
 export default function Home({ navigation, route }: any) {
+  
   const dolar = useSelector<any>((state) => state.dolar);
   const dispatch = useDispatch<any>();
 
@@ -27,29 +28,50 @@ export default function Home({ navigation, route }: any) {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <View style={styles.firstDiv}>
-          <Types compra={blue.compra} venta={blue.venta} tipo={"Blue"} />
+
+        <View style={styles.containerCards} >
+
+          <View style={styles.firstDiv}>
+            <Types 
+              compra={blue.compra} 
+              venta={blue.venta} 
+              tipo={"Blue"} 
+            />
+          </View>
+
+          <View style={styles.firstDiv}>
+            <Types
+              compra={oficial.compra}
+              venta={oficial.venta}
+              tipo={"Oficial"}
+            />
+          </View>
+
+          <View style={styles.firstDiv}>
+            <Types 
+              compra={ccl.compra} 
+              venta={ccl.venta} 
+              tipo={"CCL"} 
+            />
+          </View>
+
+          <View style={styles.firstDiv}>
+            <Types 
+              compra={bolsa.compra} 
+              venta={bolsa.venta} 
+              tipo={"Bolsa"} 
+            />
+          </View>
+
+          <View style={styles.firstDiv}>
+            <Types
+              compra={turista.compra}
+              venta={turista.venta}
+              tipo={"Turista"}
+            />
+          </View>
         </View>
-        <View style={styles.otherDivs}>
-          <Types
-            compra={oficial.compra}
-            venta={oficial.venta}
-            tipo={"Oficial"}
-          />
-        </View>
-        <View style={styles.otherDivs}>
-          <Types compra={ccl.compra} venta={ccl.venta} tipo={"CCL"} />
-        </View>
-        <View style={styles.otherDivs}>
-          <Types compra={bolsa.compra} venta={bolsa.venta} tipo={"Bolsa"} />
-        </View>
-        <View style={styles.lastDivs}>
-          <Types
-            compra={turista.compra}
-            venta={turista.venta}
-            tipo={"Turista"}
-          />
-        </View>
+
       </ScrollView>
       <NavBar navigation={navigation} route={route} />
     </View>
