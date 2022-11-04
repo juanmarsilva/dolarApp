@@ -1,5 +1,11 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../App.style";
+
+export const colors = {
+    background:'#353535',
+    containersBack: 'black',
+    selected: '#338b85',
+    text: '#fff',
+};
 
 const balanceStyle = StyleSheet.create({
     container: {
@@ -66,4 +72,4 @@ const balanceStyle = StyleSheet.create({
     }
 });
 
-export default balanceStyle
+export default balanceStyle;

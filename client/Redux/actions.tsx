@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 export const TYPES_OF_DOLARS = 'TYPES_OF_DOLARS';
+export const DETAIL_DOLAR = 'DETAIL_DOLAR';
+export const INFO_DOLAR_PRICE = 'INFO_DOLAR_PRICE';
 
 export const onTypesOfDolars = () => {
     return function(dispatch: any) {
@@ -9,5 +11,22 @@ export const onTypesOfDolars = () => {
                 return dispatch({type: TYPES_OF_DOLARS, payload: res.data})
             })
             .catch(err => console.log(err))
-    }
-}
+    };
+};
+
+export const detailDolar = (name: string) => {
+    return {
+        type: DETAIL_DOLAR,
+        payload: name,
+    };
+};
+
+export const infoAboutDolarPrice = (type: string) => {
+    return function(dispatch: any) {
+        axios(`https://api-dolar-argentina.herokuapp.com/api/evolucion/${type}`)
+            .then(res => {
+                return dispatch({type: INFO_DOLAR_PRICE, payload: res.data})
+            })
+            .catch(err => console.log(err));
+    };
+};

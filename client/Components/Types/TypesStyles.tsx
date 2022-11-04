@@ -7,7 +7,7 @@ const firstViewStyle = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       borderRadius: 12,
-      margin: 5
+      margin: 5,
     },
     title: {
       fontSize: 20,
@@ -24,7 +24,8 @@ const firstViewStyle = StyleSheet.create({
     },
     sell: {
       color: 'red',
-    }
+    },
+
   });
 
 export default firstViewStyle

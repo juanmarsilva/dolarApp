@@ -1,4 +1,4 @@
-import { TYPES_OF_DOLARS } from "./actions";
+import { DETAIL_DOLAR, TYPES_OF_DOLARS, detailDolar, INFO_DOLAR_PRICE } from './actions';
 
 const initialState = {
     dolar: {
@@ -23,16 +23,18 @@ const initialState = {
             venta: 0,
         }
     },
+    detailDolar: '',
+    infoDolar: {},
 }
 
-export default function reducerRoot (state = initialState, action: any): any {
-    switch (action.type){
+export default function reducerRoot (state = initialState, {type, payload}: any): any {
+    switch (type){
         case TYPES_OF_DOLARS : 
-            let oficial = action.payload[0].casa
-            let dolarBlue = action.payload[1].casa
-            let ccl = action.payload[3].casa
-            let bolsa = action.payload[4].casa
-            let turista = action.payload[6].casa
+            let oficial = payload[0].casa
+            let dolarBlue = payload[1].casa
+            let ccl = payload[3].casa
+            let bolsa = payload[4].casa
+            let turista = payload[6].casa
             return {
                 ...state,
                 dolar: {
@@ -57,6 +59,16 @@ export default function reducerRoot (state = initialState, action: any): any {
                         venta: turista.venta
                     }
                 }
+            }
+        case DETAIL_DOLAR: 
+            return {
+                ...state,
+                detailDolar: payload
+            }
+        case INFO_DOLAR_PRICE:  
+            return {
+                ...state,
+                infoDolar: payload,
             }
         default: 
             return state
