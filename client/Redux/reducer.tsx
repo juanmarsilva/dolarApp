@@ -21,6 +21,10 @@ const initialState = {
         turista: {
             compra: 0,
             venta: 0,
+        },
+        qatar: {
+            compra: 0,
+            venta: 0,
         }
     },
 }
@@ -33,6 +37,8 @@ export default function reducerRoot (state = initialState, action: any): any {
             let ccl = action.payload[3].casa
             let bolsa = action.payload[4].casa
             let turista = action.payload[6].casa
+            let qatar = oficial.venta && Number(oficial.venta.replace(',','.')) + Number(oficial.venta.replace(',','.'))*1
+            qatar = qatar.toString().replace('.',',')
             return {
                 ...state,
                 dolar: {
@@ -53,8 +59,12 @@ export default function reducerRoot (state = initialState, action: any): any {
                         venta: bolsa.venta
                     },
                     turista: {
-                        compra: turista.compra,
-                        venta: turista.venta
+                        compra: 'No Cotiza',
+                        venta: turista.venta,
+                    },
+                    qatar: {
+                        compra: 'No Cotiza',
+                        venta: qatar
                     }
                 }
             }

@@ -1,6 +1,6 @@
-import React, { useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { View, Text, TextInput, ScrollView } from 'react-native';
+import { Text } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { plazoFijo, plazoUVA, dolarConvert } from './BalanceFunctions';
 import { onTypesOfDolars } from '../../Redux/actions';
@@ -15,7 +15,7 @@ export default function Table ({number}) {
         dispatch(onTypesOfDolars())
     },[])
     
-    const { blue, oficial, ccl, bolsa, turista }: any = dolar;
+    const { blue, oficial, ccl, qatar, turista }: any = dolar;
     if (
       !Object.keys(blue).length ||
       !Object.keys(oficial).length ||
@@ -30,13 +30,16 @@ export default function Table ({number}) {
                             <Text style={balanceStyle.text}>Tipo de inversión</Text>
                         </Row>
                         <Row style={balanceStyle.leftCell}>
-                            <Text style={balanceStyle.text}>Dolar turista</Text>
-                        </Row>
-                        <Row style={balanceStyle.leftCell}>
                             <Text style={balanceStyle.text}>Dolar blue</Text>
                         </Row>
                         <Row style={balanceStyle.leftCell}>
                             <Text style={balanceStyle.text}>Dolar CCL</Text>
+                        </Row>
+                        <Row style={balanceStyle.leftCell}>
+                            <Text style={balanceStyle.text}>Dolar turista</Text>
+                        </Row>
+                        <Row style={balanceStyle.leftCell}>
+                            <Text style={balanceStyle.text}>Dolar Qatar</Text>
                         </Row>
                         <Row style={balanceStyle.leftCell}>
                             <Text style={balanceStyle.text}>Plazo fijo comun (75% anual)</Text>
@@ -50,13 +53,16 @@ export default function Table ({number}) {
                             <Text style={balanceStyle.text}>Inversión</Text>
                         </Row>
                         <Row style={balanceStyle.rightCell}>
-                            <Text style={balanceStyle.text}>{dolarConvert(turista.venta,number)}</Text>
+                            <Text style={balanceStyle.text}>{dolarConvert(blue.venta,Number(number))}</Text>
                         </Row>
                         <Row style={balanceStyle.rightCell}>
-                            <Text style={balanceStyle.text}>{dolarConvert(blue.venta,number)}</Text>
+                            <Text style={balanceStyle.text}>{dolarConvert(ccl.venta,Number(number))}</Text>
                         </Row>
                         <Row style={balanceStyle.rightCell}>
-                            <Text style={balanceStyle.text}>{dolarConvert(ccl.venta,number)}</Text>
+                            <Text style={balanceStyle.text}>{dolarConvert(turista.venta,Number(number))}</Text>
+                        </Row>
+                        <Row style={balanceStyle.rightCell}>
+                            <Text style={balanceStyle.text}>{dolarConvert(qatar.venta,Number(number))}</Text>
                         </Row>
                         <Row style={balanceStyle.rightCell}>
                             <Col size={25}>

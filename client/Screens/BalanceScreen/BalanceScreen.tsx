@@ -30,7 +30,7 @@ const BalanceScreen = ({navigation, route}: any) => {
     return (
         <View style={balanceStyle.container} >
             <View style={balanceStyle.boxUp}>
-                <Text style={balanceStyle.title}>Pesos</Text>
+                <Text style={balanceStyle.title}>Pesos argentinos</Text>
                 <TextInput
                     keyboardType='numeric'
                     onChangeText={onChangeInput}
