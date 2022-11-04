@@ -25,7 +25,8 @@ const initialState = {
         qatar: {
             compra: 0,
             venta: 0,
-        }
+        },
+        // uva: 0
     },
     detailDolar: '',
     infoDolar: {},
@@ -44,6 +45,7 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
             return {
                 ...state,
                 dolar: {
+                    ...state.dolar,
                     oficial: {
                         compra: oficial.compra,
                         venta: oficial.venta
@@ -80,6 +82,15 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
                 ...state,
                 infoDolar: payload,
             }
+        // case INFLACION:
+        //     let uva = payload._z ? payload._z[payload._z.length-3].v + payload._z[payload._z.length-2].v + payload._z[payload._z.length-1].v + 0.25 : 0
+        //     return{
+        //         ...state,
+        //         dolar: {
+        //             ...state.dolar,
+        //             uva: uva
+        //         }
+        //     }
         default: 
             return state
     }

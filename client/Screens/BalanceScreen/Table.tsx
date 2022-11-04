@@ -7,10 +7,10 @@ import { onTypesOfDolars } from '../../Redux/actions';
 import { Loading } from '../../Components/Loading/Loading';
 import balanceStyle from './BalanceScreenStyles';
 
-export default function Table({ number }: any) {
-  
-  const dolar = useSelector<any>((state) => state.dolar);
-  const dispatch = useDispatch<any>();
+export default function Table({ number, inflacion }: any) {
+    const uva = inflacion ? inflacion : 0
+    const dolar = useSelector<any>((state) => state.dolar);
+    const dispatch = useDispatch<any>();
 
     useEffect(()=>{
         dispatch(onTypesOfDolars())
@@ -23,7 +23,7 @@ export default function Table({ number }: any) {
       !Object.keys(ccl).length ||
       !Object.keys(turista).length
     )
-      return <Loading />;
+    return <Loading />;
 
     return (
         <Grid style={balanceStyle.table}>
@@ -90,15 +90,15 @@ export default function Table({ number }: any) {
                                         <Text style={balanceStyle.text}>1 mes</Text>
                                 </Row>
                                 <Row style={balanceStyle.insideCell}>
-                                        <Text style={balanceStyle.text}>{plazoUVA(Number(number),1)}</Text>
+                                        <Text style={balanceStyle.text}>{plazoUVA(Number(number),1,uva)}</Text>
                                 </Row>
                             </Col>
                             <Col size={25}>
                                 <Row style={balanceStyle.insideCell}>
-                                        <Text style={balanceStyle.text}>3 meses</Text>
+                                        <Text style={balanceStyle.text}>3 meses*</Text>
                                 </Row>
                                 <Row style={balanceStyle.insideCell}>
-                                        <Text style={balanceStyle.text}>{plazoFijo(Number(number),3)}</Text>
+                                        <Text style={balanceStyle.text}>{plazoUVA(Number(number),3,uva)}</Text>
                                 </Row>
                             </Col>
                         </Row>
