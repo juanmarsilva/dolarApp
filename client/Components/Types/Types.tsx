@@ -19,7 +19,7 @@ export const Types = ({ compra, venta, tipo, navigation }: any) => {
   return (
     <Pressable onPress={(e) => handleClick(e, tipo)}>
       <View style={[types.container]}>
-        <Text style={types.title}>Dolar {tipo}</Text>
+        <Text style={types.title}>{tipo}</Text>
         <View style={{ flexDirection: "row" }}>
           <Text style={[types.text, types.buy]}>COMPRA</Text>
           <Text style={types.text}> {compra} </Text>

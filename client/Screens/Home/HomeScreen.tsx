@@ -34,7 +34,7 @@ export default function Home({ navigation, route }: any) {
             <Types
               compra={oficial.compra}
               venta={oficial.venta}
-              tipo={"Oficial"}
+              tipo={"Dolar Oficial"}
               navigation={navigation}
             />
           </View>
@@ -43,7 +43,7 @@ export default function Home({ navigation, route }: any) {
             <Types 
               compra={blue.compra} 
               venta={blue.venta} 
-              tipo={"Blue"}
+              tipo={"Dolar Blue"}
               navigation={navigation}
             />
           </View>
@@ -52,7 +52,7 @@ export default function Home({ navigation, route }: any) {
             <Types 
               compra={ccl.compra} 
               venta={ccl.venta} 
-              tipo={"CCL"}
+              tipo={"Dolar CCL"}
               navigation={navigation} 
             />
           </View>
@@ -61,7 +61,7 @@ export default function Home({ navigation, route }: any) {
             <Types 
               compra={bolsa.compra} 
               venta={bolsa.venta} 
-              tipo={"Bolsa"}
+              tipo={"Dolar Bolsa"}
               navigation={navigation} 
             />
           </View>
@@ -70,10 +70,34 @@ export default function Home({ navigation, route }: any) {
             <Types
               compra={turista.compra}
               venta={turista.venta}
-              tipo={"Turista"}
+              tipo={"Dolar Turista"}
               navigation={navigation}
             />
           </View>
+          {/* <View style={[styles.firstDiv, styles.shadowProp]}>
+            <Types
+              compra={turista.compra}
+              venta={turista.venta}
+              tipo={"Dolar Turista"}
+              navigation={navigation}
+            />
+          </View>
+          <View style={[styles.firstDiv, styles.shadowProp]}>
+            <Types
+              compra={turista.compra}
+              venta={turista.venta}
+              tipo={"Dolar Turista"}
+              navigation={navigation}
+            />
+          </View>
+          <View style={[styles.firstDiv, styles.shadowProp]}>
+            <Types
+              compra={turista.compra}
+              venta={turista.venta}
+              tipo={"Dolar Turista"}
+              navigation={navigation}
+            />
+          </View> */}
         </View>
       </ScrollView>
       <NavBar navigation={navigation} route={route} />
