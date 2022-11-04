@@ -17,34 +17,34 @@ const BalanceScreen = ({ navigation, route }: any) => {
     }
     return newArray.join("");
   };
-  const onChangeInput = (text: string) => {
-    if (text) {
-      const withOutComa = text.replace(",", "");
-      const withoutDot = withOutComa.split(".").join("");
-      const number = Number(withoutDot);
-      setNumber(number);
-    } else {
-      setNumber(0);
+    const onChangeInput = (text:string) => {
+        if(text){
+            const withOutComa = text.replace(',','')
+            const withoutDot = withOutComa.split('.').join('')
+            const number = Number(withoutDot)
+            setNumber(number)
+        } else{
+            setNumber(0)
+        }
     }
-  };
-  return (
-    <View style={balanceStyle.container}>
-      <View style={balanceStyle.boxUp}>
-        <Text style={balanceStyle.title}>Pesos</Text>
-        <TextInput
-          keyboardType="numeric"
-          onChangeText={onChangeInput}
-          value={addDot(number)}
-          placeholder="0"
-          style={balanceStyle.input}
-        />
-      </View>
-      <ScrollView style={balanceStyle.boxDown}>
-        <Table number={number.toString()} />
-      </ScrollView>
-      <NavBar navigation={navigation} route={route} />
-    </View>
-  );
+    return (
+        <View style={balanceStyle.container} >
+            <View style={balanceStyle.boxUp}>
+                <Text style={balanceStyle.title}>Pesos</Text>
+                <TextInput
+                    keyboardType='numeric'
+                    onChangeText={onChangeInput}
+                    value={addDot(number)}
+                    placeholder='0'
+                    style={balanceStyle.input}
+                />
+            </View>
+            <ScrollView style={balanceStyle.boxDown}>
+                <Table number={number.toString()}/>
+            </ScrollView>
+            <NavBar navigation={navigation} route={route} />
+        </View>
+    );
 };
 
 export default BalanceScreen;

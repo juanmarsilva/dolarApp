@@ -8,8 +8,8 @@ export const addDot = (finalNumber:number) => {
     return decimales? `${newArray.join('')},${decimales}` : newArray.join('')
 }
 
-export const dolarConvert = (num:any, number:number) => {
-    const recived = number/Number(num.replace(',','.'))
+export const dolarConvert = (num:string, number:number) => {
+    const recived = num? number/Number(num.replace(',','.')) : 0
     const m = Number((Math.abs(recived) * 100).toPrecision(15));
     const finalNumber = Math.round(m) / 100 * Math.sign(recived);
     return addDot(finalNumber)
