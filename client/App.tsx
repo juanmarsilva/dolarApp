@@ -6,19 +6,23 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./Screens/Home/HomeScreen";
 import ProfileScreen from "./Screens/Profile/ProfileScreen";
 import BalanceScreen from "./Screens/BalanceScreen/BalanceScreen";
-import {colors} from './App.style';
+import { colors } from "./App.style";
 import { StatusBar } from "react-native";
+import DetailScreen from "./Screens/Detail/DetailScreen";
 // https://cors-solucion.herokuapp.com/
 // const URL = 'https://api-dolar-argentina.herokuapp.com/api/'
 
 const Stack = createNativeStackNavigator();
 
-
 export default function App() {
+
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <StatusBar backgroundColor={colors.otherBackground} barStyle='light-content' />
+        <StatusBar
+          backgroundColor={colors.otherBackground}
+          barStyle="light-content"
+        />
         <Stack.Navigator>
           <Stack.Screen
             name="Home"
@@ -53,6 +57,20 @@ export default function App() {
             component={BalanceScreen}
             options={{
               title: "Balance",
+              headerStyle: {
+                backgroundColor: colors.otherBackground,
+              },
+              headerTintColor: colors.text,
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
+          />
+          <Stack.Screen
+            name="Detail"
+            component={DetailScreen}
+            options={{
+              title: "Info",
               headerStyle: {
                 backgroundColor: colors.otherBackground,
               },

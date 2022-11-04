@@ -5,11 +5,12 @@ import { Col, Row, Grid } from 'react-native-easy-grid';
 import { plazoFijo, plazoUVA, dolarConvert } from './BalanceFunctions';
 import { onTypesOfDolars } from '../../Redux/actions';
 import { Loading } from '../../Components/Loading/Loading';
-import balanceStyle from './BalanceScreen.style';
+import balanceStyle from './BalanceScreenStyles';
 
-export default function Table ({number}) {
-    const dolar = useSelector<any>((state) => state.dolar);
-    const dispatch = useDispatch<any>()
+export default function Table({ number }: any) {
+  
+  const dolar = useSelector<any>((state) => state.dolar);
+  const dispatch = useDispatch<any>();
 
     useEffect(()=>{
         dispatch(onTypesOfDolars())
@@ -19,7 +20,8 @@ export default function Table ({number}) {
     if (
       !Object.keys(blue).length ||
       !Object.keys(oficial).length ||
-      !Object.keys(ccl).length
+      !Object.keys(ccl).length ||
+      !Object.keys(turista).length
     )
       return <Loading />;
 

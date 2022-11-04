@@ -1,5 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../App.style';
+
+export const colors = {
+    otherBackground: '#252524',
+    selected: '#338b85',
+    buttonContainer: '#344e41',
+    contrarianText: '#000',
+}
 
 export const styles = StyleSheet.create({
     container: {
