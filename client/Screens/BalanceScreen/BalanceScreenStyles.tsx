@@ -65,6 +65,13 @@ const balanceStyle = StyleSheet.create({
     insideCell: {
         display:'flex',
         justifyContent: "center",
+    },
+    textUVA:{
+        color:colors.text,
+        width:'80%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        fontSize:10
     }
 });
 

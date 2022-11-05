@@ -22,13 +22,13 @@ export const plazoFijo = (num:number,divisor:number) => {
     return addDot(finalNumber)
 }
 
-export const plazoUVA = (num:number,month:number) => {
+export const plazoUVA = (num:number,month:number,inflacion:number) => {
     let prev
     if(month === 1) {
         prev = num + num*(0.71/12)
     }
     else {
-        prev = num
+        prev = num + num*(inflacion/100)
     }
     const m = Number((Math.abs(prev) * 100).toPrecision(15));
     const finalNumber = Math.round(m) / 100 * Math.sign(prev);
