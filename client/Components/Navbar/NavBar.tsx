@@ -32,13 +32,13 @@ export const NavBar = ({ navigation, route }: any) => {
             </Pressable>
         </View>
         <View style={styles.button}>
-            <Pressable onPress={() => navigation.navigate("Profile")}>
+            <Pressable onPress={() => navigation.navigate("Calculator")}>
                 <Ionicons
                     name="person-circle-outline"
                     size={50}
                     color={colors.contrarianText}
                 />
-                {route.name === "Profile" ? (
+                {route.name === "Calculator" ? (
                     <View style={styles.profile}></View>
                 ) : (
                     <></>

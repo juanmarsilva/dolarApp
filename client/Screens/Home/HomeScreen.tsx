@@ -3,17 +3,20 @@ import { View, ScrollView } from "react-native";
 import { Types } from "../../Components/Types/Types";
 import { styles } from "./HomeScreenStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { onTypesOfDolars } from "../../Redux/actions";
+import { euroPrice, onTypesOfDolars } from "../../Redux/actions";
 import { Loading } from "../../Components/Loading/Loading";
 import { NavBar } from "../../Components/Navbar/NavBar";
 
 export default function Home({ navigation, route }: any) {
   
   const dolar = useSelector<any>((state) => state.dolar);
+  const euro = useSelector<any>(state => state.euro);
   const dispatch = useDispatch<any>();
 
+
   useEffect(() => {
-    return dispatch(onTypesOfDolars());
+    dispatch(onTypesOfDolars());
+    return dispatch(euroPrice());
   }, []);
 
   const { blue, oficial, ccl, bolsa, turista }: any = dolar;
@@ -24,7 +27,8 @@ export default function Home({ navigation, route }: any) {
     !Object.keys(ccl).length
   )
     return <Loading />;
-
+  
+    
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -76,6 +80,14 @@ export default function Home({ navigation, route }: any) {
           </View>
           {/* <View style={[styles.firstDiv, styles.shadowProp]}>
             <Types
+              compra={euro.compra}
+              venta={euro.venta}
+              tipo={"Euro oficial"}
+              navigation={navigation}
+            />
+          </View> */}
+          {/* <View style={[styles.firstDiv, styles.shadowProp]}>
+            <Types
               compra={turista.compra}
               venta={turista.venta}
               tipo={"Dolar Turista"}
@@ -103,4 +115,5 @@ export default function Home({ navigation, route }: any) {
       <NavBar navigation={navigation} route={route} />
     </View>
   );
+  
 }

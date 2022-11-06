@@ -1,4 +1,4 @@
-import { DETAIL_DOLAR, TYPES_OF_DOLARS, INFO_DOLAR_PRICE } from './actions';
+import { DETAIL_DOLAR, TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE } from './actions';
 
 const initialState = {
     dolar: {
@@ -30,6 +30,10 @@ const initialState = {
     },
     detailDolar: '',
     infoDolar: {},
+    euro: {
+        compra: 0,
+        venta: 0,
+    },
 }
 
 export default function reducerRoot (state = initialState, {type, payload}: any): any {
@@ -81,6 +85,17 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
             return {
                 ...state,
                 infoDolar: payload,
+            }
+        case EURO_PRICE: 
+            const bancoNacionInfo = payload.filter((obj: any) => obj.casa.nombre === 'Banco Nación');
+            const compraPrice = bancoNacionInfo[0].casa.compra;
+            const ventaPrice = bancoNacionInfo[0].casa.venta;
+            return {
+                ...state,
+                euro: {
+                    compra: compraPrice,
+                    venta: ventaPrice,
+                }
             }
         // case INFLACION:
         //     let uva = payload._z ? payload._z[payload._z.length-3].v + payload._z[payload._z.length-2].v + payload._z[payload._z.length-1].v + 0.25 : 0
