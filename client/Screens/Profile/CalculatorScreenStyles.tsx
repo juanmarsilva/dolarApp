@@ -18,4 +18,15 @@ export const styles = StyleSheet.create({
         color: colors.title,
         alignSelf: "center",
     },
+    input: {
+        margin: 20,
+        height:60,
+        width:'50%',
+        fontSize: 20,
+        alignSelf: 'center',
+        textAlign: 'center',
+        borderRadius: 12,
+        color: colors.title,
+        backgroundColor: colors.title
+    }
 });
