@@ -5,6 +5,12 @@ import { styles } from './CalculatorScreenStyles';
 // import s from "./ProfileScreen.module.css";
 import { useSelector } from 'react-redux';
 
+interface input {
+    ars: any,
+    dolar: any,
+    euro: any,
+    real: any,
+}
 
 const CalculatorScreen = ({ navigation, route }: any) => {
 
@@ -13,13 +19,16 @@ const CalculatorScreen = ({ navigation, route }: any) => {
 
     const { blue, turista }:any = dolarsPrice;
 
-    const [ ars, setArs ] = useState<any>(0);
-    const [ dolar, setDolar ] = useState<any>(0);
-    const [ euro, setEuro ] = useState<any>(0);
-    const [ real, setReal ] = useState<any>(0);
+    const [ input, setInput ] = useState<input>({
+        ars: 0,
+        dolar: 0,
+        euro: 0,
+        real: 0,
+    });
 
-    
-
+    const handleChange = (value: any, name: string, ) => {
+        
+    };
 
     return (
         <View style={styles.container}>
@@ -28,29 +37,29 @@ const CalculatorScreen = ({ navigation, route }: any) => {
                     keyboardType="numeric"
                     placeholder='0'
                     style={styles.input}
-                    // value={ars}
-                    onChangeText={(value) => setArs(value)} 
+                    value={input.ars}
+                    onChangeText={(value) => handleChange(value, 'ars')}
                 />
                 <TextInput
                     keyboardType="numeric"
                     placeholder='0'
                     style={styles.input}
-                    // value={dolar}
-                    onChangeText={(value) => setDolar(value)}
+                    value={input.dolar}
+                    onChangeText={(value) => handleChange(value, 'dolar')}
                 />
                 <TextInput
                     keyboardType="numeric"
                     placeholder='0'
                     style={styles.input}
-                    // value={euro}
-                    onChangeText={(value) => setEuro(value)}
+                    value={input.euro}
+                    onChangeText={(value) => handleChange(value, 'euro')}
                 />
                 <TextInput
                     keyboardType="numeric"
                     placeholder='0'
                     style={styles.input}
-                    // value={real}
-                    onChangeText={(value) => setReal(value)}
+                    value={input.real}
+                    onChangeText={(value) => handleChange(value, 'real')}
                 />
                 
             </View>
