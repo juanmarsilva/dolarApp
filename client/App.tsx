@@ -1,20 +1,22 @@
 import React from "react";
 import store from "./Redux/store";
-import { Provider } from "react-redux";
+import { Provider} from 'react-redux';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./Screens/Home/HomeScreen";
-import CalculatorScreen from "./Screens/Profile/CalculatorScreen";
+import ConversorScreen from "./Screens/Conversor/ConversorScreen";
 import BalanceScreen from "./Screens/BalanceScreen/BalanceScreen";
 import { colors } from "./App.style";
 import { StatusBar } from "react-native";
 import DetailScreen from "./Screens/Detail/DetailScreen";
+import { euroPrice, onTypesOfDolars, realPrice } from "./Redux/actions";
 // https://cors-solucion.herokuapp.com/
 // const URL = 'https://api-dolar-argentina.herokuapp.com/api/'
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -38,10 +40,10 @@ export default function App() {
             }}
           />
           <Stack.Screen
-            name="Calculator"
-            component={CalculatorScreen}
+            name="Conversor"
+            component={ConversorScreen}
             options={{
-              title: "Calculator",
+              title: "Conversor",
               headerStyle: {
                 backgroundColor: colors.otherBackground,
               },
