@@ -27,7 +27,7 @@ export const detailDolar = (name: string) => {
 
 export const infoAboutDolarPrice = (type: string) => {
     return function(dispatch: any) {
-        axios(`https://api-dolar-argentina.herokuapp.com/api/evolucion/${type}`)
+        axios(`https://api-dolar-argentina.herokuapp.com/api/evolucion/dolar${type}`)
             .then(res => {
                 return dispatch({type: INFO_DOLAR_PRICE, payload: res.data})
             })

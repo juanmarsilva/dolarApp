@@ -9,17 +9,18 @@ export const Types = ({ compra, venta, tipo, navigation }: any) => {
 
   const dispatch = useDispatch<any>();
 
-  const handleClick = (e: any, name: string) => {
+  const handleClick = (e: any, tipo: string) => {
     e.preventDefault();
-    dispatch(detailDolar(name));
-    dispatch(infoAboutDolarPrice('dolarOficial'));
+    dispatch(detailDolar(tipo));
+    dispatch(infoAboutDolarPrice(tipo));
     navigation.navigate("Detail");
   };
+  const name = tipo === 'Euro oficial' || tipo === 'Real oficial'? tipo : `Dolar ${tipo[0].toUpperCase() + tipo.substring(1)}`
 
   return (
     <Pressable onPress={(e) => handleClick(e, tipo)}>
       <View style={[types.container]}>
-        <Text style={types.title}>{tipo}</Text>
+        <Text style={types.title}>{name}</Text>
         <View style={{ flexDirection: "row" }}>
           <Text style={[types.text, types.buy]}>COMPRA</Text>
           <Text style={types.text}> {compra} </Text>
