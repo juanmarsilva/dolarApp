@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, ScrollView } from 'react-native';
 import { NavBar } from "../../Components/Navbar/NavBar";
 import { styles } from "./ConversorScreenStyles";
 import { useSelector } from "react-redux";
@@ -10,114 +10,199 @@ interface input {
     dolar: any;
     euro: any;
     real: any;
+    pesoChileno: any;
+    pesoUruguayo: any;
 }
 
 const ConversorScreen = ({ navigation, route }: any) => {
     const dolarsPrice = useSelector((state: any) => state.dolar);
-    // const euroPrice = useSelector((state:any) => state.euro);
-    // const realPrice = useSelector( (state:any) => state.real);
+    const euroPrice = useSelector((state:any) => state.euro);
+    const realPrice = useSelector( (state:any) => state.real);
 
-    const { blue }: any = dolarsPrice;
+    const { oficial }: any = dolarsPrice;
+
+    const { dolarEuro, dolarReal, dolarPesoChileno, dolarPesoUruguayo, pesoChilenoPrice, pesoUruguayoPrice }:any = useSelector<any>(state => state.conversor);
 
     const [input, setInput] = useState<input>({
-        ars: 0,
-        dolar: 0,
-        euro: 0,
-        real: 0,
+        ars: '1',
+        dolar: oficial.venta,
+        euro: euroPrice.venta,
+        real: realPrice.venta,
+        pesoChileno: pesoChilenoPrice,
+        pesoUruguayo: pesoUruguayoPrice,
     });
 
     const handleChange = (value: any, name: string) => {
         if (name === "ars") {
-        const dolarCantity = value / parseInt(blue.venta);
-        const euroCantity = dolarCantity / 0.99;
-        const realCantity = dolarCantity * 5;
-        setInput({
-            ...input,
-            ars: value,
-            dolar: dolarCantity.toFixed(2),
-            euro: euroCantity.toFixed(2),
-            real: realCantity.toFixed(2),
-        });
-        }
+            const dolarCantity = addTwoDecimals(value / parseInt(oficial.venta));
+            const euroCantity = addTwoDecimals(dolarCantity * parseInt(dolarEuro));
+            const realCantity = addTwoDecimals(dolarCantity * parseInt(dolarReal));
+            const pesoUruguayoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoUruguayo));
+            const pesoChilenoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoChileno));
+            setInput({
+                ...input,
+                ars: value,
+                dolar: String(dolarCantity),
+                euro: String(euroCantity),
+                real: String(realCantity),
+                pesoChileno: String(pesoChilenoCantity),
+                pesoUruguayo: String(pesoUruguayoCantity),
+            });
+        };
+
         if (name === "dolar") {
-        const pesosCantity = value * parseInt(blue.venta);
-        const euroCantity = value * 0.99;
-        const realCantity = value * 5;
-        setInput({
-            ...input,
-            ars: pesosCantity.toFixed(2),
-            dolar: value,
-            euro: euroCantity.toFixed(2),
-            real: realCantity.toFixed(2),
-        });
-        }
+            const pesosCantity = addTwoDecimals(value * parseInt(oficial.venta));
+            const euroCantity = addTwoDecimals(value * parseInt(dolarEuro));
+            const realCantity = addTwoDecimals(value * parseInt(dolarReal));
+            const pesoUruguayoCantity = addTwoDecimals(value * parseInt(dolarPesoUruguayo));
+            const pesoChilenoCantity = addTwoDecimals(value * parseInt(dolarPesoChileno));
+            setInput({
+                ...input,
+                ars: String(pesosCantity),
+                dolar: value,
+                euro: String(euroCantity),
+                real: String(realCantity),
+                pesoChileno: String(pesoChilenoCantity),
+                pesoUruguayo: String(pesoUruguayoCantity),
+            });
+        };
+
         if (name === "euro") {
-        const dolarCantity = value * 0.99;
-        const pesosCantity = dolarCantity * parseInt(blue.venta);
-        const realCantity = dolarCantity * 5;
-        setInput({
-            ...input,
-            ars: pesosCantity.toFixed(2),
-            dolar: dolarCantity.toFixed(2),
-            euro: value,
-            real: realCantity.toFixed(2),
-        });
-        }
+            const dolarCantity = addTwoDecimals(value / parseInt(dolarEuro));
+            const pesosCantity = addTwoDecimals(dolarCantity * parseInt(euroPrice.venta));
+            const realCantity = addTwoDecimals(dolarCantity * parseInt(dolarReal));
+            const pesoUruguayoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoUruguayo));
+            const pesoChilenoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoChileno));
+            setInput({
+                ...input,
+                ars: String(pesosCantity),
+                dolar: String(dolarCantity),
+                euro: value,
+                real: String(realCantity),
+                pesoChileno: String(pesoChilenoCantity),
+                pesoUruguayo: String(pesoUruguayoCantity),
+            });
+        };
+
         if (name === "real") {
-        const dolarCantity = value * 5;
-        const euroCantity = dolarCantity / 0.99;
-        const pesosCantity = dolarCantity * parseInt(blue.venta);
-        setInput({
-            ...input,
-            ars: pesosCantity.toFixed(2),
-            dolar: dolarCantity.toFixed(2),
-            euro: euroCantity.toFixed(2),
-            real: value,
-        });
-        }
+            const dolarCantity = addTwoDecimals(value / parseInt(dolarReal));
+            const euroCantity = addTwoDecimals(dolarCantity * parseInt(dolarEuro));
+            const pesosCantity = addTwoDecimals(value * parseInt(realPrice.venta));
+            const pesoUruguayoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoUruguayo));
+            const pesoChilenoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoChileno));
+            setInput({
+                ...input,
+                ars: String(pesosCantity),
+                dolar: String(dolarCantity),
+                euro: String(euroCantity),
+                real: value,
+                pesoChileno: String(pesoChilenoCantity),
+                pesoUruguayo: String(pesoUruguayoCantity),
+            });
+        };
+
+        if(name === 'peso chileno') {
+            const dolarCantity = addTwoDecimals(value / parseInt(dolarPesoChileno));
+            const pesosCantity = addTwoDecimals(value * parseInt(pesoChilenoPrice));
+            const euroCantity = addTwoDecimals(dolarCantity * parseInt(dolarEuro));
+            const pesoUruguayoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoUruguayo));
+            const realCantity = addTwoDecimals(dolarCantity * parseInt(dolarReal));
+            setInput({
+                ...input,
+                ars: String(pesosCantity),
+                dolar: String(dolarCantity),
+                euro: String(euroCantity),
+                real: String(realCantity),
+                pesoChileno: value,
+                pesoUruguayo: String(pesoUruguayoCantity),
+            });
+        };
+
+        if(name === 'peso uruguayo') {
+            const dolarCantity = addTwoDecimals(value / parseInt(dolarPesoUruguayo));
+            const pesosCantity = addTwoDecimals(value * parseInt(pesoUruguayoPrice));
+            const euroCantity = addTwoDecimals(dolarCantity * parseInt(dolarEuro));
+            const pesoChilenoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoChileno));
+            const realCantity = addTwoDecimals(dolarCantity * parseInt(dolarReal));
+            setInput({
+                ...input,
+                ars: String(pesosCantity),
+                dolar: String(dolarCantity),
+                euro: String(euroCantity),
+                real: String(realCantity),
+                pesoChileno: String(pesoChilenoCantity),
+                pesoUruguayo: value,
+            });
+        };
+
     };
 
     return (
         <View style={styles.container}>
         <Text style={styles.title}>Estas conversiones son aproximadas</Text>
-        <View style={styles.containerAllInputs}>
+        <ScrollView style={styles.containerAllInputs}>
+            
             <View style={styles.containerInput}>
-            <Text style={styles.label}>PESOS</Text>
-            <TextInput
-                keyboardType="numeric"
-                style={styles.input}
-                value={input.ars}
-                onChangeText={(value) => handleChange(value, "ars")}
-            />
+                <Text style={styles.label}>PESOS ARGENTINOS</Text>
+                <TextInput
+                    keyboardType="numeric"
+                    style={styles.input}
+                    value={input.ars}
+                    onChangeText={(value) => handleChange(value, "ars")}
+                />
             </View>
+
             <View style={styles.containerInput}>
-            <Text style={styles.label}>DOLARES</Text>
-            <TextInput
-                keyboardType="numeric"
-                style={styles.input}
-                value={input.dolar}
-                onChangeText={(value) => handleChange(value, "dolar")}
-            />
+                <Text style={styles.label}>DOLAR OFICIAL</Text>
+                <TextInput
+                    keyboardType="numeric"
+                    style={styles.input}
+                    value={input.dolar}
+                    onChangeText={(value) => handleChange(value, "dolar")}
+                />
             </View>
+
             <View style={styles.containerInput}>
-            <Text style={styles.label}>EUROS</Text>
-            <TextInput
-                keyboardType="numeric"
-                style={styles.input}
-                value={input.euro}
-                onChangeText={(value) => handleChange(value, "euro")}
-            />
+                <Text style={styles.label}>EURO OFICIAL</Text>
+                <TextInput
+                    keyboardType="numeric"
+                    style={styles.input}
+                    value={input.euro}
+                    onChangeText={(value) => handleChange(value, "euro")}
+                />
             </View>
+
             <View style={styles.containerInput}>
-            <Text style={styles.label}>REALES</Text>
-            <TextInput
-                keyboardType="numeric"
-                style={styles.input}
-                value={input.real}
-                onChangeText={(value) => handleChange(value, "real")}
-            />
+                <Text style={styles.label}>REAL OFICIAL</Text>
+                <TextInput
+                    keyboardType="numeric"
+                    style={styles.input}
+                    value={input.real}
+                    onChangeText={(value) => handleChange(value, "real")}
+                />
             </View>
-        </View>
+
+            <View style={styles.containerInput}>
+                <Text style={styles.label}>PESOS CHILENOS</Text>
+                <TextInput
+                    keyboardType="numeric"
+                    style={styles.input}
+                    value={input.pesoChileno}
+                    onChangeText={(value) => handleChange(value, "peso chileno")}
+                />
+            </View>
+
+            <View style={styles.containerInput}>
+                <Text style={styles.label}>PESOS URUGUAYOS</Text>
+                <TextInput
+                    keyboardType="numeric"
+                    style={styles.input}
+                    value={input.pesoUruguayo}
+                    onChangeText={(value) => handleChange(value, "peso uruguayo")}
+                />
+            </View>
+
+        </ScrollView>
         <NavBar navigation={navigation} route={route} />
         </View>
     );

@@ -32,7 +32,8 @@ export const styles = StyleSheet.create({
     containerAllInputs: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
+        // alignItems: 'center',
+        marginBottom: 100,
     },
     containerInput: {
         display: 'flex',
@@ -45,5 +46,7 @@ export const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 15,
         textAlign: 'center',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
