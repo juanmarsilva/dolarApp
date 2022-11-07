@@ -3,6 +3,7 @@ import { View, Text, TextInput } from "react-native";
 import { NavBar } from "../../Components/Navbar/NavBar";
 import { styles } from "./ConversorScreenStyles";
 import { useSelector } from "react-redux";
+import { addTwoDecimals } from '../BalanceScreen/BalanceFunctions';
 
 interface input {
     ars: any;
