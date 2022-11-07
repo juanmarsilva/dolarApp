@@ -39,7 +39,7 @@ export default function Home({ navigation, route }: any) {
             <Types
               compra={oficial.compra}
               venta={oficial.venta}
-              tipo={"Dolar Oficial"}
+              tipo={"oficial"}
               navigation={navigation}
             />
           </View>
@@ -48,7 +48,7 @@ export default function Home({ navigation, route }: any) {
             <Types 
               compra={blue.compra} 
               venta={blue.venta} 
-              tipo={"Dolar Blue"}
+              tipo={"blue"}
               navigation={navigation}
             />
           </View>
@@ -57,7 +57,7 @@ export default function Home({ navigation, route }: any) {
             <Types 
               compra={ccl.compra} 
               venta={ccl.venta} 
-              tipo={"Dolar CCL"}
+              tipo={"CCL"}
               navigation={navigation} 
             />
           </View>
@@ -66,7 +66,7 @@ export default function Home({ navigation, route }: any) {
             <Types 
               compra={bolsa.compra} 
               venta={bolsa.venta} 
-              tipo={"Dolar Bolsa"}
+              tipo={"bolsa"}
               navigation={navigation} 
             />
           </View>
@@ -75,7 +75,7 @@ export default function Home({ navigation, route }: any) {
             <Types
               compra={turista.compra}
               venta={turista.venta}
-              tipo={"Dolar Turista"}
+              tipo={"turista"}
               navigation={navigation}
             />
           </View>
