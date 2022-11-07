@@ -1,4 +1,4 @@
-import { DETAIL_DOLAR, TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE } from './actions';
+import { DETAIL_DOLAR, TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE, REAL_PRICE } from './actions';
 
 const initialState = {
     dolar: {
@@ -31,6 +31,10 @@ const initialState = {
     detailDolar: '',
     infoDolar: {},
     euro: {
+        compra: 0,
+        venta: 0,
+    },
+    real: {
         compra: 0,
         venta: 0,
     },
@@ -87,16 +91,27 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
                 infoDolar: payload,
             }
         case EURO_PRICE: 
-            const bancoNacionInfo = payload.filter((obj: any) => obj.casa.nombre === 'Banco Nación');
-            const compraPrice = bancoNacionInfo[0].casa.compra;
-            const ventaPrice = bancoNacionInfo[0].casa.venta;
+            const bancoNacionInfoEURO = payload.filter((obj: any) => obj.casa.nombre === 'Banco Nación');
+            const compraPriceEuro = bancoNacionInfoEURO[0].casa.compra;
+            const ventaPriceEuro = bancoNacionInfoEURO[0].casa.venta;
             return {
                 ...state,
                 euro: {
-                    compra: compraPrice,
-                    venta: ventaPrice,
+                    compra: compraPriceEuro,
+                    venta: ventaPriceEuro,
                 }
             }
+        case REAL_PRICE:
+            const bancoNacionInfoReal = payload.filter((obj: any) => obj.casa.nombre === 'Banco Nación');
+            const compraPriceReal = bancoNacionInfoReal[0].casa.compra;
+            const ventaPriceReal = bancoNacionInfoReal[0].casa.venta; 
+            return {
+                ...state,
+                real: {
+                    compra: compraPriceReal,
+                    venta: ventaPriceReal,
+                }
+            };
         // case INFLACION:
         //     let uva = payload._z ? payload._z[payload._z.length-3].v + payload._z[payload._z.length-2].v + payload._z[payload._z.length-1].v + 0.25 : 0
         //     return{
