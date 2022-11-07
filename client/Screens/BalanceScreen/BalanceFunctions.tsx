@@ -8,17 +8,20 @@ export const addDot = (finalNumber:number) => {
     return decimales? `${newArray.join('')},${decimales}` : newArray.join('')
 }
 
+export const addTwoDecimals = (recived:number) => {
+    const m = Number((Math.abs(recived) * 100).toPrecision(15));
+    return Math.round(m) / 100 * Math.sign(recived);
+}
+
 export const dolarConvert = (num:string, number:number) => {
     const recived = num? number/Number(num.replace(',','.')) : 0
-    const m = Number((Math.abs(recived) * 100).toPrecision(15));
-    const finalNumber = Math.round(m) / 100 * Math.sign(recived);
+    const finalNumber = addTwoDecimals(recived)
     return addDot(finalNumber)
 }
 
 export const plazoFijo = (num:number,divisor:number) => {
     const prev = num + num*(0.75/(12/divisor))
-    const m = Number((Math.abs(prev) * 100).toPrecision(15));
-    const finalNumber = Math.round(m) / 100 * Math.sign(prev);
+    const finalNumber = addTwoDecimals(prev)
     return addDot(finalNumber)
 }
 
@@ -30,7 +33,6 @@ export const plazoUVA = (num:number,month:number,inflacion:number) => {
     else {
         prev = num + num*(inflacion/100)
     }
-    const m = Number((Math.abs(prev) * 100).toPrecision(15));
-    const finalNumber = Math.round(m) / 100 * Math.sign(prev);
+    const finalNumber = addTwoDecimals(prev);
     return addDot(finalNumber)
 }
