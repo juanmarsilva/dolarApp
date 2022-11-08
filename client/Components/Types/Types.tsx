@@ -3,7 +3,7 @@ import { View, Text, Pressable } from 'react-native';
 import types from "./TypesStyles";
 // import s from "./Types.module.css";
 import { useDispatch } from 'react-redux';
-import { detailDolar, infoAboutDolarPrice } from "../../Redux/actions";
+import { detailDolar, getAllData, infoAboutDolarPrice } from "../../Redux/actions";
 
 export const Types = ({ compra, venta, tipo, navigation }: any) => {
 
@@ -11,8 +11,9 @@ export const Types = ({ compra, venta, tipo, navigation }: any) => {
 
   const handleClick = (e: any, tipo: string) => {
     e.preventDefault();
-    dispatch(detailDolar(tipo));
-    dispatch(infoAboutDolarPrice(tipo));
+    // dispatch(detailDolar(tipo));
+    // dispatch(infoAboutDolarPrice(tipo));
+    if(tipo === 'blue' || tipo === 'oficial') dispatch(getAllData())
     navigation.navigate("Detail");
   };
   const name = tipo === 'Euro oficial' || tipo === 'Real oficial'? tipo : `Dolar ${tipo[0].toUpperCase() + tipo.substring(1)}`

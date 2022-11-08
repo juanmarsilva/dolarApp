@@ -1,4 +1,5 @@
-import { DETAIL_DOLAR, TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE, REAL_PRICE } from './actions';
+import { DETAIL_DOLAR, TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE, REAL_PRICE, GET_ALL_DATA } from './actions';
+import { functionDays, functionMonths } from './reducerFunctions';
 
 const initialState = {
     dolar: {
@@ -38,6 +39,10 @@ const initialState = {
         compra: 0,
         venta: 0,
     },
+    evolution: {
+        blue:[],
+        oficial: []
+    }
 }
 
 export default function reducerRoot (state = initialState, {type, payload}: any): any {
@@ -112,6 +117,24 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
                     venta: ventaPriceReal,
                 }
             };
+        case GET_ALL_DATA:
+            const oficialDailyEvolution = payload.valores.evolucion_dolar.oficial.mes
+            const oDailyEvolution = functionDays(oficialDailyEvolution)
+            const oficialMonthlyEvolution = payload.valores.evolucion_dolar.oficial.anio
+            const oMonthlyEvolution = functionMonths(oficialMonthlyEvolution)
+            const blueDailyEvolution = payload.valores.evolucion_dolar.oficial.mes
+            const bDailyEvolution = functionDays(blueDailyEvolution)
+            const blueMonthlyEvolution = payload.valores.evolucion_dolar.oficial.anio
+            const bMonthlyEvolution = functionMonths(blueMonthlyEvolution)
+            console.log(bDailyEvolution)
+            return {
+                ...state,
+                evolution: {
+                    ...state.evolution,
+                    oficial: [oDailyEvolution,oMonthlyEvolution],
+                    blue: [bDailyEvolution,bMonthlyEvolution]
+                }
+            }
         // case INFLACION:
         //     let uva = payload._z ? payload._z[payload._z.length-3].v + payload._z[payload._z.length-2].v + payload._z[payload._z.length-1].v + 0.25 : 0
         //     return{
