@@ -14,16 +14,16 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         color: colors.text,
         textAlign: "center",
-        marginTop: 50,
+        marginTop: 20,
     },
     input: {
         margin: 20,
         height:60,
-        width:180,
+        width:'45%',
         fontSize: 20,
         borderRadius: 12,
         color: 'black',
-        backgroundColor: colors.text
+        backgroundColor: colors.text,
     },
     containerAllInputs: {
         display: 'flex',
@@ -32,17 +32,19 @@ export const styles = StyleSheet.create({
     },
     containerInput: {
         display: 'flex',
-        width: '100%',
+        width: '92%',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: 20,
+        marginLeft: 'auto',
+        marginRight: 'auto',
     },
     label: {
         color: '#fff',
         fontSize: 15,
         textAlign: 'center',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: '50%',
     }
 });
