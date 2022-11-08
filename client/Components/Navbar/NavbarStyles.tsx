@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+// import { colors } from '../../App.style';
 
 export const colors = {
     otherBackground: '#252524',

@@ -3,7 +3,7 @@ import { View, ScrollView } from "react-native";
 import { Types } from "../../Components/Types/Types";
 import { styles } from "./HomeScreenStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllData, euroPrice, onTypesOfDolars, realPrice } from "../../Redux/actions";
+import { euroPrice, onTypesOfDolars, realPrice, getAllData } from "../../Redux/actions";
 import { Loading } from "../../Components/Loading/Loading";
 import { NavBar } from "../../Components/Navbar/NavBar";
 

@@ -70,8 +70,7 @@ export const realPrice = () => {
 
 export const getAllData = () => {
     return function (dispatch:any){
-
-        axios.get("https://api-dolar-argentina.herokuapp.com/api/all")
+        axios("https://api-dolar-argentina.herokuapp.com/api/all")
         .then(res => {
             return dispatch({type:GET_ALL_DATA ,payload:res.data })
         })
