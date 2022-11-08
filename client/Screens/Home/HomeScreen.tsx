@@ -13,10 +13,11 @@ export default function Home({ navigation, route }: any) {
   const euro = useSelector<any>((state: any) => state.euro);
   const real = useSelector<any>(state => state.real);
   const dispatch = useDispatch<any>();
-
+  
   const { blue, oficial, ccl, bolsa, turista }: any = dolar;
   const { compra: compraEuro, venta: ventaEuro }: any = euro;
   const { compra: compraReal, venta: ventaReal }: any = real;
+  let qatar = Number(oficial.venta.replace(',','.'))  + Number(oficial.venta.replace(',','.')) * 1
 
   if (
     !Object.keys(blue).length ||
@@ -77,6 +78,15 @@ export default function Home({ navigation, route }: any) {
               compra={turista.compra}
               venta={turista.venta}
               tipo={"turista"}
+              navigation={navigation}
+            />
+          </View>
+
+          <View style={[styles.firstDiv, styles.shadowProp]}>
+            <Types
+              compra={'No cotiza'}
+              venta={qatar}
+              tipo={"qatar"}
               navigation={navigation}
             />
           </View>

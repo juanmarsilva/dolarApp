@@ -52,9 +52,8 @@ const DetailScreen = ({ navigation, route }: any) => {
                     height={220}
                     yAxisLabel={'$'}
                     chartConfig={{
-                    backgroundColor: '#e26a00',
-                    backgroundGradientFrom: colors.selectedIntense,
-                    backgroundGradientTo: colors.selected,
+                    backgroundGradientFrom: colors.otherBackground,
+                    backgroundGradientTo: colors.buttonContainer,
                     decimalPlaces: 0,
                     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                     style: {
