@@ -1,4 +1,4 @@
-import { DETAIL_DOLAR, TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE, REAL_PRICE, GET_ALL_DATA } from './actions';
+import { DETAIL_DOLAR, TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE, REAL_PRICE, GET_ALL_DATA, SET_THEME } from './actions';
 import { functionDays, functionMonths } from './reducerFunctions';
 
 const initialState = {
@@ -50,7 +50,8 @@ const initialState = {
         dolarPesoUruguayo: 0,
         pesoChilenoPrice: 0,
         pesoUruguayoPrice: 0,
-    }
+    },
+    theme: '',
 }
 
 export default function reducerRoot (state = initialState, {type, payload}: any): any {
@@ -155,6 +156,11 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
                     oficial: [oDailyEvolution,oMonthlyEvolution],
                     blue: [bDailyEvolution,bMonthlyEvolution]
                 }
+            }
+        case SET_THEME:
+            return {
+                ...state,
+                theme: payload,
             }
         // case INFLACION:
         //     let uva = payload._z ? payload._z[payload._z.length-3].v + payload._z[payload._z.length-2].v + payload._z[payload._z.length-1].v + 0.25 : 0

@@ -9,7 +9,8 @@ import BalanceScreen from "./Screens/BalanceScreen/BalanceScreen";
 import { colors } from "./App.style";
 import { StatusBar } from "react-native";
 import DetailScreen from "./Screens/Detail/DetailScreen";
-import { euroPrice, onTypesOfDolars, realPrice } from "./Redux/actions";
+
+
 // https://cors-solucion.herokuapp.com/
 // const URL = 'https://api-dolar-argentina.herokuapp.com/api/'
 

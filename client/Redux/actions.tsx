@@ -6,6 +6,7 @@ export const INFO_DOLAR_PRICE = 'INFO_DOLAR_PRICE';
 export const EURO_PRICE = 'EURO_PRICE';
 export const REAL_PRICE = 'REAL_PRICE';
 export const GET_ALL_DATA = 'GET_ALL_DATA';
+export const SET_THEME = 'GET_THEME';
 // export const INFLACION = 'INFLACION'
 // const { TOKEN } = process.env
 
@@ -78,3 +79,9 @@ export const getAllData = () => {
     }
 }
 
+export const setTheme = (theme: string = 'dark') => {
+    return {
+        type: SET_THEME,
+        payload: theme,
+    }
+}
