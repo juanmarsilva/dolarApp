@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 import { addTwoDecimals } from '../BalanceScreen/BalanceFunctions';
 
 interface input {
-    ars: any;
     dolar: any;
     euro: any;
     real: any;
@@ -24,12 +23,11 @@ const ConversorScreen = ({ navigation, route }: any) => {
     const { dolarEuro, dolarReal, dolarPesoChileno, dolarPesoUruguayo, pesoChilenoPrice, pesoUruguayoPrice }:any = useSelector<any>(state => state.conversor);
 
     const [input, setInput] = useState<input>({
-        ars: '1',
-        dolar: oficial.venta,
-        euro: euroPrice.venta,
-        real: realPrice.venta,
-        pesoChileno: pesoChilenoPrice,
-        pesoUruguayo: pesoUruguayoPrice,
+        dolar: '1',
+        euro: dolarEuro,
+        real: dolarReal,
+        pesoChileno: dolarPesoChileno,
+        pesoUruguayo: dolarPesoUruguayo,
     });
 
     const handleChange = (value: any, name: string) => {
@@ -41,7 +39,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
             const pesoChilenoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoChileno));
             setInput({
                 ...input,
-                ars: value,
                 dolar: String(dolarCantity),
                 euro: String(euroCantity),
                 real: String(realCantity),
@@ -58,7 +55,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
             const pesoChilenoCantity = addTwoDecimals(value * parseInt(dolarPesoChileno));
             setInput({
                 ...input,
-                ars: String(pesosCantity),
                 dolar: value,
                 euro: String(euroCantity),
                 real: String(realCantity),
@@ -75,7 +71,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
             const pesoChilenoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoChileno));
             setInput({
                 ...input,
-                ars: String(pesosCantity),
                 dolar: String(dolarCantity),
                 euro: value,
                 real: String(realCantity),
@@ -92,7 +87,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
             const pesoChilenoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoChileno));
             setInput({
                 ...input,
-                ars: String(pesosCantity),
                 dolar: String(dolarCantity),
                 euro: String(euroCantity),
                 real: value,
@@ -109,7 +103,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
             const realCantity = addTwoDecimals(dolarCantity * parseInt(dolarReal));
             setInput({
                 ...input,
-                ars: String(pesosCantity),
                 dolar: String(dolarCantity),
                 euro: String(euroCantity),
                 real: String(realCantity),
@@ -126,7 +119,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
             const realCantity = addTwoDecimals(dolarCantity * parseInt(dolarReal));
             setInput({
                 ...input,
-                ars: String(pesosCantity),
                 dolar: String(dolarCantity),
                 euro: String(euroCantity),
                 real: String(realCantity),
@@ -141,16 +133,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
         <View style={styles.container}>
         <Text style={styles.title}>Estas conversiones son aproximadas</Text>
         <ScrollView style={styles.containerAllInputs}>
-            
-            <View style={styles.containerInput}>
-                <Text style={styles.label}>PESOS ARGENTINOS</Text>
-                <TextInput
-                    keyboardType="numeric"
-                    style={styles.input}
-                    value={input.ars}
-                    onChangeText={(value) => handleChange(value, "ars")}
-                />
-            </View>
 
             <View style={styles.containerInput}>
                 <Text style={styles.label}>DOLAR OFICIAL</Text>
