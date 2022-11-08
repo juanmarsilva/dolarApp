@@ -20,6 +20,7 @@ export const styles = StyleSheet.create({
         margin: 20,
         height:60,
         width:'45%',
+        textAlign: 'center',
         fontSize: 20,
         borderRadius: 12,
         color: 'black',
@@ -43,8 +44,6 @@ export const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 15,
         textAlign: 'center',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '50%',
+        width: '45%',
     }
 });
