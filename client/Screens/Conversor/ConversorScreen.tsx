@@ -48,7 +48,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
         };
 
         if (name === "dolar") {
-            const pesosCantity = addTwoDecimals(value * parseInt(oficial.venta));
             const euroCantity = addTwoDecimals(value * parseInt(dolarEuro));
             const realCantity = addTwoDecimals(value * parseInt(dolarReal));
             const pesoUruguayoCantity = addTwoDecimals(value * parseInt(dolarPesoUruguayo));
@@ -65,7 +64,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
 
         if (name === "euro") {
             const dolarCantity = addTwoDecimals(value / parseInt(dolarEuro));
-            const pesosCantity = addTwoDecimals(dolarCantity * parseInt(euroPrice.venta));
             const realCantity = addTwoDecimals(dolarCantity * parseInt(dolarReal));
             const pesoUruguayoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoUruguayo));
             const pesoChilenoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoChileno));
@@ -82,7 +80,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
         if (name === "real") {
             const dolarCantity = addTwoDecimals(value / parseInt(dolarReal));
             const euroCantity = addTwoDecimals(dolarCantity * parseInt(dolarEuro));
-            const pesosCantity = addTwoDecimals(value * parseInt(realPrice.venta));
             const pesoUruguayoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoUruguayo));
             const pesoChilenoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoChileno));
             setInput({
@@ -97,7 +94,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
 
         if(name === 'peso chileno') {
             const dolarCantity = addTwoDecimals(value / parseInt(dolarPesoChileno));
-            const pesosCantity = addTwoDecimals(value * parseInt(pesoChilenoPrice));
             const euroCantity = addTwoDecimals(dolarCantity * parseInt(dolarEuro));
             const pesoUruguayoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoUruguayo));
             const realCantity = addTwoDecimals(dolarCantity * parseInt(dolarReal));
@@ -113,7 +109,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
 
         if(name === 'peso uruguayo') {
             const dolarCantity = addTwoDecimals(value / parseInt(dolarPesoUruguayo));
-            const pesosCantity = addTwoDecimals(value * parseInt(pesoUruguayoPrice));
             const euroCantity = addTwoDecimals(dolarCantity * parseInt(dolarEuro));
             const pesoChilenoCantity = addTwoDecimals(dolarCantity * parseInt(dolarPesoChileno));
             const realCantity = addTwoDecimals(dolarCantity * parseInt(dolarReal));
@@ -131,61 +126,61 @@ const ConversorScreen = ({ navigation, route }: any) => {
 
     return (
         <View style={styles.container}>
-        <Text style={styles.title}>Estas conversiones son aproximadas</Text>
-        <ScrollView style={styles.containerAllInputs}>
+            <ScrollView style={styles.containerAllInputs}>
+                <Text style={styles.title}>Estas conversiones son aproximadas</Text>
 
-            <View style={styles.containerInput}>
-                <Text style={styles.label}>DOLAR OFICIAL</Text>
-                <TextInput
-                    keyboardType="numeric"
-                    style={styles.input}
-                    value={input.dolar}
-                    onChangeText={(value) => handleChange(value, "dolar")}
-                />
-            </View>
+                <View style={styles.containerInput}>
+                    <Text style={styles.label}>DOLAR OFICIAL</Text>
+                    <TextInput
+                        keyboardType="numeric"
+                        style={styles.input}
+                        value={input.dolar}
+                        onChangeText={(value) => handleChange(value, "dolar")}
+                    />
+                </View>
 
-            <View style={styles.containerInput}>
-                <Text style={styles.label}>EURO OFICIAL</Text>
-                <TextInput
-                    keyboardType="numeric"
-                    style={styles.input}
-                    value={input.euro}
-                    onChangeText={(value) => handleChange(value, "euro")}
-                />
-            </View>
+                <View style={styles.containerInput}>
+                    <Text style={styles.label}>EURO OFICIAL</Text>
+                    <TextInput
+                        keyboardType="numeric"
+                        style={styles.input}
+                        value={input.euro}
+                        onChangeText={(value) => handleChange(value, "euro")}
+                    />
+                </View>
 
-            <View style={styles.containerInput}>
-                <Text style={styles.label}>REAL OFICIAL</Text>
-                <TextInput
-                    keyboardType="numeric"
-                    style={styles.input}
-                    value={input.real}
-                    onChangeText={(value) => handleChange(value, "real")}
-                />
-            </View>
+                <View style={styles.containerInput}>
+                    <Text style={styles.label}>REAL OFICIAL</Text>
+                    <TextInput
+                        keyboardType="numeric"
+                        style={styles.input}
+                        value={input.real}
+                        onChangeText={(value) => handleChange(value, "real")}
+                    />
+                </View>
 
-            <View style={styles.containerInput}>
-                <Text style={styles.label}>PESOS CHILENOS</Text>
-                <TextInput
-                    keyboardType="numeric"
-                    style={styles.input}
-                    value={input.pesoChileno}
-                    onChangeText={(value) => handleChange(value, "peso chileno")}
-                />
-            </View>
+                <View style={styles.containerInput}>
+                    <Text style={styles.label}>PESOS CHILENOS</Text>
+                    <TextInput
+                        keyboardType="numeric"
+                        style={styles.input}
+                        value={input.pesoChileno}
+                        onChangeText={(value) => handleChange(value, "peso chileno")}
+                    />
+                </View>
 
-            <View style={styles.containerInput}>
-                <Text style={styles.label}>PESOS URUGUAYOS</Text>
-                <TextInput
-                    keyboardType="numeric"
-                    style={styles.input}
-                    value={input.pesoUruguayo}
-                    onChangeText={(value) => handleChange(value, "peso uruguayo")}
-                />
-            </View>
+                <View style={styles.containerInput}>
+                    <Text style={styles.label}>PESOS URUGUAYOS</Text>
+                    <TextInput
+                        keyboardType="numeric"
+                        style={styles.input}
+                        value={input.pesoUruguayo}
+                        onChangeText={(value) => handleChange(value, "peso uruguayo")}
+                    />
+                </View>
 
-        </ScrollView>
-        <NavBar navigation={navigation} route={route} />
+            </ScrollView>
+            <NavBar navigation={navigation} route={route} />
         </View>
     );
 };

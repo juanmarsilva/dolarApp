@@ -29,7 +29,7 @@ export default function App() {
             name="Home"
             component={Home}
             options={{
-              title: "Home",
+              title: 'Home',
               headerStyle: {
                 backgroundColor: colors.otherBackground,
               },
