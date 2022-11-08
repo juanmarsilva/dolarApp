@@ -42,6 +42,13 @@ const initialState = {
     evolution: {
         blue:[],
         oficial: []
+    conversor: {
+        dolarReal: 0,
+        dolarEuro: 0,
+        dolarPesoChileno: 0,
+        dolarPesoUruguayo: 0,
+        pesoChilenoPrice: 0,
+        pesoUruguayoPrice: 0,
     }
 }
 
@@ -126,9 +133,22 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
             const bDailyEvolution = functionDays(blueDailyEvolution)
             const blueMonthlyEvolution = payload.valores.evolucion_dolar.oficial.anio
             const bMonthlyEvolution = functionMonths(blueMonthlyEvolution)
-            console.log(bDailyEvolution)
+            const dolarEuro = payload.valores.Monedas.casa193.venta._text;
+            const dolarReal = payload.valores.Monedas.casa270.venta._text;
+            const dolarPesoChileno = payload.valores.Monedas.casa81.venta._text;
+            const dolarPesoUruguayo = payload.valores.Monedas.casa55.venta._text;
+            const pesoChilenoPrice = payload.valores.cotizador.casa308.venta._text;
+            const pesoUruguayoPrice = payload.valores.cotizador.casa307.venta._text;
             return {
                 ...state,
+                conversor: {
+                    dolarEuro,
+                    dolarReal,
+                    dolarPesoChileno,
+                    dolarPesoUruguayo,
+                    pesoChilenoPrice,
+                    pesoUruguayoPrice
+                },
                 evolution: {
                     ...state.evolution,
                     oficial: [oDailyEvolution,oMonthlyEvolution],

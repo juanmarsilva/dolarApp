@@ -73,10 +73,9 @@ export const getAllData = () => {
 
         axios.get("https://api-dolar-argentina.herokuapp.com/api/all")
         .then(res => {
-            // const json = convert.xml2json(res.data, {compact: true, spaces: 4});
-            // const jsonParsed = JSON.parse(json);
             return dispatch({type:GET_ALL_DATA ,payload:res.data })
         })
         .catch(err => console.log(err))
     }
 }
+
