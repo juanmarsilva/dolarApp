@@ -15,8 +15,8 @@ export const Types = ({ compra, venta, tipo, navigation }: any) => {
     if(tipo === 'blue' || tipo === 'oficial') {
       dispatch(detailDolar(tipo));
       dispatch(getAllData())
+      navigation.navigate("Detail");
     }
-    navigation.navigate("Detail");
   };
   const name = tipo === 'Euro oficial' || tipo === 'Real oficial'? tipo : `Dolar ${tipo[0].toUpperCase() + tipo.substring(1)}`
 
