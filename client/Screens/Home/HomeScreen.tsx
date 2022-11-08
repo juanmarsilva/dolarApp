@@ -17,7 +17,8 @@ export default function Home({ navigation, route }: any) {
   const { blue, oficial, ccl, bolsa, turista }: any = dolar;
   const { compra: compraEuro, venta: ventaEuro }: any = euro;
   const { compra: compraReal, venta: ventaReal }: any = real;
-  let qatar = Number(oficial.venta.replace(',','.'))  + Number(oficial.venta.replace(',','.')) * 1
+  let qatar 
+  oficial.venta && (qatar = Number(oficial?.venta?.replace(',','.'))  + Number(oficial?.venta?.replace(',','.')) * 1)
 
   if (
     !Object.keys(blue).length ||
@@ -84,7 +85,7 @@ export default function Home({ navigation, route }: any) {
 
           <View style={[styles.firstDiv, styles.shadowProp]}>
             <Types
-              compra={'No cotiza'}
+              compra={'No Cotiza'}
               venta={qatar}
               tipo={"qatar"}
               navigation={navigation}
