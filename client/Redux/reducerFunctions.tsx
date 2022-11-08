@@ -12,7 +12,7 @@ export const functionDays = (dailyEvolution:any) => {
     const first = arrayDays.slice(0,today-1)
     const second = arrayDays.slice(today-1,arrayDays.length)
     const united = first.length? [...second,...first] : second
-    return united
+    return united.filter((number:any, i:number) => i % 2 === 0 && number)
 }
 
 export const functionMonths = (monthlyEvolution:any) => {

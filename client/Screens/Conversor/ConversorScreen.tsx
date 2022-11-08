@@ -130,7 +130,7 @@ const ConversorScreen = ({ navigation, route }: any) => {
                 <Text style={styles.title}>Estas conversiones son aproximadas</Text>
 
                 <View style={styles.containerInput}>
-                    <Text style={styles.label}>DOLAR OFICIAL</Text>
+                    <Text style={styles.label}>DOLAR</Text>
                     <TextInput
                         keyboardType="numeric"
                         style={styles.input}
@@ -140,7 +140,7 @@ const ConversorScreen = ({ navigation, route }: any) => {
                 </View>
 
                 <View style={styles.containerInput}>
-                    <Text style={styles.label}>EURO OFICIAL</Text>
+                    <Text style={styles.label}>EURO</Text>
                     <TextInput
                         keyboardType="numeric"
                         style={styles.input}
@@ -150,7 +150,7 @@ const ConversorScreen = ({ navigation, route }: any) => {
                 </View>
 
                 <View style={styles.containerInput}>
-                    <Text style={styles.label}>REAL OFICIAL</Text>
+                    <Text style={styles.label}>REAL</Text>
                     <TextInput
                         keyboardType="numeric"
                         style={styles.input}

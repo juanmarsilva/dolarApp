@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 
 export default Pig = ({focused}) => {
     const animation = useRef(null);
-  if(focused) animation?.current?.play()
+  if(focused) animation?.current?.play(45,112)
     return (
         <LottieView
             style={styles.pig}

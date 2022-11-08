@@ -9,6 +9,18 @@ export const styles = StyleSheet.create({
     },
     title: {
         fontSize: 40,
+        marginTop: 10,
         color: colors.text,
-    }
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    },
+    containerGraf: {
+        width:'90%',
+        height: '50%',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        display:'flex',
+        alignContent: 'center',
+        justifyContent:'center'
+    },
 });
