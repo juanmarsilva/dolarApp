@@ -29,14 +29,14 @@ const DetailScreen = ({ navigation, route }: any) => {
         }
     }
 
-    let sampleData = date?.map(day => {
+    let sampleData = date?.map((day:any) => {
         return {x:Object.keys(day)[0],y:Object.values(day)[0] }
     })
     let data = {
-        labels: sampleData?.map(x => x.x),
+        labels: sampleData?.map((x: any) => x.x),
         datasets: [
             {
-                data: sampleData?.map(y => y.y)
+                data: sampleData?.map((y:any) => y.y)
             }
         ]
     }
