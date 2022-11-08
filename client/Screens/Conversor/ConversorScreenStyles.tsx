@@ -1,13 +1,9 @@
 import { StyleSheet } from "react-native";
-
-export const colors = {
-    backgroundColor: '#333236',
-    title: '#fff',
-};
+import { colors } from '../../App.style';
 
 export const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.backgroundColor,
+        backgroundColor: colors.background,
         flex: 1,
         width: "100%",
         height: "100%",
@@ -16,7 +12,7 @@ export const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        color: colors.title,
+        color: colors.text,
         textAlign: "center",
         marginTop: 50,
     },
@@ -27,12 +23,11 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         borderRadius: 12,
         color: 'black',
-        backgroundColor: colors.title
+        backgroundColor: colors.text
     },
     containerAllInputs: {
         display: 'flex',
         flexDirection: 'column',
-        // alignItems: 'center',
         marginBottom: 100,
     },
     containerInput: {

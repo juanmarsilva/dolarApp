@@ -42,6 +42,7 @@ const initialState = {
     evolution: {
         blue:[],
         oficial: []
+    },
     conversor: {
         dolarReal: 0,
         dolarEuro: 0,
