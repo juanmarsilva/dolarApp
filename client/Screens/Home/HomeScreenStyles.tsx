@@ -7,6 +7,16 @@ export const styles = StyleSheet.create({
         height:'100%',
         backgroundColor: colors.background
     },
+    selected:{
+        shadowColor:colors.text,
+        shadowOffset: {
+          width: 2,
+          height: 4,
+        },
+        shadowOpacity: 1,
+      shadowRadius: 5,
+        elevation: 20,
+      },
     firstDiv: {
         width: 140,
         height: 90,

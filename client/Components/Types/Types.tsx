@@ -15,14 +15,14 @@ export const Types = ({ compra, venta, tipo, navigation }: any) => {
     if(tipo === 'blue' || tipo === 'oficial') {
       dispatch(detailDolar(tipo));
       dispatch(getAllData())
+      navigation.navigate("Detail");
     }
-    navigation.navigate("Detail");
   };
   const name = tipo === 'Euro oficial' || tipo === 'Real oficial'? tipo : `Dolar ${tipo[0].toUpperCase() + tipo.substring(1)}`
 
   return (
     <Pressable onPress={(e) => handleClick(e, tipo)}>
-      <View style={[types.container]}>
+      <View style={types.container}>
         <Text style={types.title}>{name}</Text>
         <View style={{ flexDirection: "row" }}>
           <Text style={[types.text, types.buy]}>COMPRA</Text>

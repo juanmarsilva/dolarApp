@@ -16,7 +16,8 @@ export const styles = StyleSheet.create({
     },
     containerGraf: {
         width:'90%',
-        height: '50%',
+        height: 'auto',
+        marginVertical:40,
         marginLeft: 'auto',
         marginRight: 'auto',
         display:'flex',

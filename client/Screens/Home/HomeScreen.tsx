@@ -36,7 +36,7 @@ export default function Home({ navigation, route }: any) {
       <ScrollView>
 
         <View style={styles.containerCards} >
-          <View style={[styles.firstDiv, styles.shadowProp]}>
+          <View style={[styles.firstDiv, styles.shadowProp, styles.selected]}>
             <Types
               compra={oficial.compra}
               venta={oficial.venta}
@@ -45,7 +45,7 @@ export default function Home({ navigation, route }: any) {
             />
           </View>
 
-          <View style={[styles.firstDiv, styles.shadowProp]}>
+          <View style={[styles.firstDiv, styles.shadowProp, styles.selected]}>
             <Types 
               compra={blue.compra} 
               venta={blue.venta} 
