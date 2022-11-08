@@ -12,5 +12,6 @@ const LoadingStyle = StyleSheet.create({
         fontSize: 30,
         color: '#000'
     }
-})
+});
+
 export default LoadingStyle
