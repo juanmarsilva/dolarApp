@@ -5,7 +5,7 @@ export const DETAIL_DOLAR = 'DETAIL_DOLAR';
 export const INFO_DOLAR_PRICE = 'INFO_DOLAR_PRICE';
 export const EURO_PRICE = 'EURO_PRICE';
 export const REAL_PRICE = 'REAL_PRICE';
-export const ALL_INFO = 'ALL_INFO';
+export const GET_ALL_DATA = 'GET_ALL_DATA';
 // export const INFLACION = 'INFLACION'
 // const { TOKEN } = process.env
 
@@ -66,14 +66,16 @@ export const realPrice = () => {
             })
             .catch(err => console.log(err))
     };
-};
+}
 
-export const allInfo = () => {
-    return function(dispatch: any) {
-        axios('https://api-dolar-argentina.herokuapp.com/api/all')
-            .then(res => {
-                return dispatch({type: ALL_INFO, payload: res.data})
-            })
-            .catch(err => console.log(err))
-    };
-};
+export const getAllData = () => {
+    return function (dispatch:any){
+
+        axios.get("https://api-dolar-argentina.herokuapp.com/api/all")
+        .then(res => {
+            return dispatch({type:GET_ALL_DATA ,payload:res.data })
+        })
+        .catch(err => console.log(err))
+    }
+}
+
