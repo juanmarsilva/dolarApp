@@ -3,7 +3,7 @@ import { View, ScrollView } from "react-native";
 import { Types } from "../../Components/Types/Types";
 import { styles } from "./HomeScreenStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { euroPrice, onTypesOfDolars, realPrice } from "../../Redux/actions";
+import { allInfo, euroPrice, onTypesOfDolars, realPrice } from "../../Redux/actions";
 import { Loading } from "../../Components/Loading/Loading";
 import { NavBar } from "../../Components/Navbar/NavBar";
 
@@ -27,6 +27,7 @@ export default function Home({ navigation, route }: any) {
   useEffect(() => {
     dispatch(onTypesOfDolars());
     dispatch(realPrice());
+    dispatch(allInfo());
     return dispatch(euroPrice());
   }, []);
   
