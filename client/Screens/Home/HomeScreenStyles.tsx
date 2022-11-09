@@ -6,8 +6,6 @@ export const styles = StyleSheet.create({
         width:'100%',
         height:'100%',
         backgroundColor: colors.background,
-        borderColor:'green',
-        borderWidth:1
     },
     containerCards: {
         flexDirection: 'row',
