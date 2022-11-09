@@ -3,13 +3,13 @@ import { View, Pressable, Text } from "react-native";
 import { styles } from "./NavbarStyles";
 import { colors } from "./NavbarStyles";
 import Pig from "../../Icons/pig";
-import Home from "../../Icons/home";
+import HomeIcon from "../../Icons/home";
 import Money from "../../Icons/money";
 
 export const NavBar = ({ navigation, route }: any) => {
 
     return (
-            <View style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.button}>
                 <Pressable onPress={() => navigation.navigate("Balance")}>
                     <Pig focused={route.name === 'Balance'}/>
@@ -23,7 +23,7 @@ export const NavBar = ({ navigation, route }: any) => {
             </View>
             <View style={styles.centralButton}>
                 <Pressable onPress={() => navigation.navigate("Home")}>
-                    <Home focused={route.name === 'Home'}/>
+                    <HomeIcon focused={route.name === 'Home'}/>
                     <Text style={{position:'absolute', color: route.name === 'Home'?colors.selected:colors.buttonContainer}}>.</Text>
                     {route.name === "Home" ? <View style={styles.home}></View> : <></>}
                 </Pressable>
