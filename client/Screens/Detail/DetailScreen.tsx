@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './DetailScreenStyles';
-import { NavBar } from '../../Components/Navbar/NavBar';
+// import { NavBar } from '../../Components/Navbar/NavBar';
 import { useSelector } from 'react-redux';
 import { Dimensions } from "react-native";
 // import { infoAboutDolarPrice } from '../../Redux/actions';
@@ -10,7 +10,7 @@ import PersonalButton from '../../Components/Buttons/Button';
 import { colors } from '../../App.style';
 
 const DetailScreen = ({ navigation, route }: any) => {
-    const type = useSelector<any>(state => state.detailDolar);
+    const type = route.params.tipo;
     const dolar = useSelector<any>(state => state.evolution);
     // const infoDolar = useSelector<any>(state => state.infoDolar);
     const [days, months] = dolar[type]
@@ -44,7 +44,7 @@ const DetailScreen = ({ navigation, route }: any) => {
     return (
         <View style={styles.container} >
             <Text style={styles.title} > {`Dolar ${type}`} </Text>
-            <NavBar navigation={navigation} route={route} />
+            {/* <NavBar navigation={navigation} route={route} /> */}
             <View style={styles.containerGraf}>
                 <LineChart
                     data={data}
@@ -52,7 +52,7 @@ const DetailScreen = ({ navigation, route }: any) => {
                     height={220}
                     yAxisLabel={'$'}
                     chartConfig={{
-                    backgroundGradientFrom: colors.otherBackground,
+                    backgroundGradientFrom: '#252524',
                     backgroundGradientTo: colors.buttonContainer,
                     decimalPlaces: 0,
                     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,

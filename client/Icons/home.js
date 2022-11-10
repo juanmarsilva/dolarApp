@@ -18,8 +18,7 @@ export default HomeIcon = ({focused}) => {
 
 export const styles = StyleSheet.create({
     home: {
-        width: 60,
-        height: 60,
-        // position: 'absolute'
+        width: 40,
+        height: 40,
     }
 })

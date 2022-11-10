@@ -24,7 +24,7 @@ export const styles = StyleSheet.create({
         fontSize: 20,
         borderRadius: 12,
         color: 'black',
-        backgroundColor: colors.text,
+        backgroundColor: colors.containersBack,
     },
     containerAllInputs: {
         display: 'flex',
@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
         marginRight: 'auto',
     },
     label: {
-        color: '#fff',
+        color: colors.text,
         fontSize: 15,
         textAlign: 'center',
         width: '45%',

@@ -5,20 +5,23 @@ import { StyleSheet } from 'react-native';
 export default Money = ({focused}) => {
     const animation = useRef(null);
   if(focused) animation?.current?.play()
+  const icon = focused?require('./peso.json'):require('./money.json')
     return (
         <LottieView
             style={styles.money}
             ref={animation}
             loop={false}
             autoPlay={false}
-            source={require('./money.json')}
+            source={icon}
         />
     );
 };
 
 export const styles = StyleSheet.create({
     money: {
-        width: 60,
-        height: 60,
+        width: 50,
+        height: 50,
+        color:'red',
+        tintColor:'red'
     }
 })

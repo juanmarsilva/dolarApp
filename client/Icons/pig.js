@@ -18,13 +18,7 @@ export default Pig = ({focused}) => {
 
 export const styles = StyleSheet.create({
     pig: {
-        // position: 'absolute',
-        width: 60,
-        height: 60,
-        // color:colors.contrarianText,
-        // top: 0,
-        // left: 0,
-        // zIndex: 10,
-        // color: '#fff'
+        width: 50,
+        height: 50,
     }
 })

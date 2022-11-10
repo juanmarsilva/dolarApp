@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
         marginTop: 30,
         borderRadius: 8,
         backgroundColor: colors.containersBack,
-        shadowColor:colors.text,
+        shadowColor:colors.background,
         shadowOffset: {
             width: 2,
             height: 4,

@@ -5,7 +5,7 @@ import { styles } from "./HomeScreenStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { euroPrice, onTypesOfDolars, realPrice, getAllData } from '../../Redux/actions';
 import { Loading } from "../../Components/Loading/Loading";
-import { NavBar } from "../../Components/Navbar/NavBar";
+// import { NavBar } from "../../Components/Navbar/NavBar";
 
 export default function Home({ navigation, route }: any) {
   
@@ -110,7 +110,7 @@ export default function Home({ navigation, route }: any) {
           </View>
 
         </View>
-      <NavBar navigation={navigation} route={route} />
+      {/* <NavBar navigation={navigation} route={route} /> */}
     </View>
   );
   
