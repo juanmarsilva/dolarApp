@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const TYPES_OF_DOLARS = 'TYPES_OF_DOLARS';
-export const DETAIL_DOLAR = 'DETAIL_DOLAR';
 export const INFO_DOLAR_PRICE = 'INFO_DOLAR_PRICE';
 export const EURO_PRICE = 'EURO_PRICE';
 export const REAL_PRICE = 'REAL_PRICE';
@@ -17,13 +16,6 @@ export const onTypesOfDolars = () => {
                 return dispatch({type: TYPES_OF_DOLARS, payload: res.data})
             })
             .catch(err => console.log(err))
-    };
-};
-
-export const detailDolar = (name: string) => {
-    return {
-        type: DETAIL_DOLAR,
-        payload: name,
     };
 };
 

@@ -5,7 +5,7 @@ import { styles } from "./HomeScreenStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { euroPrice, onTypesOfDolars, realPrice, getAllData } from '../../Redux/actions';
 import { Loading } from "../../Components/Loading/Loading";
-import { NavBar } from "../../Components/Navbar/NavBar";
+// import { NavBar } from "../../Components/Navbar/NavBar";
 
 export default function Home({ navigation, route }: any) {
   
@@ -35,10 +35,9 @@ export default function Home({ navigation, route }: any) {
   
   return (
     <View style={styles.container}>
-      <ScrollView>
 
         <View style={styles.containerCards} >
-          <View style={[styles.firstDiv, styles.shadowProp, styles.selected]}>
+          <View style={styles.firstDiv}>
             <Types
               compra={oficial.compra}
               venta={oficial.venta}
@@ -47,7 +46,7 @@ export default function Home({ navigation, route }: any) {
             />
           </View>
 
-          <View style={[styles.firstDiv, styles.shadowProp, styles.selected]}>
+          <View style={styles.firstDiv}>
             <Types 
               compra={blue.compra} 
               venta={blue.venta} 
@@ -56,7 +55,7 @@ export default function Home({ navigation, route }: any) {
             />
           </View>
 
-          <View style={[styles.firstDiv, styles.shadowProp]}>
+          <View style={styles.firstDiv}>
             <Types 
               compra={ccl.compra} 
               venta={ccl.venta} 
@@ -65,7 +64,7 @@ export default function Home({ navigation, route }: any) {
             />
           </View>
 
-          <View style={[styles.firstDiv, styles.shadowProp]}>
+          <View style={styles.firstDiv}>
             <Types 
               compra={bolsa.compra} 
               venta={bolsa.venta} 
@@ -74,7 +73,7 @@ export default function Home({ navigation, route }: any) {
             />
           </View>
 
-          <View style={[styles.firstDiv, styles.shadowProp]}>
+          <View style={styles.firstDiv}>
             <Types
               compra={turista.compra}
               venta={turista.venta}
@@ -83,7 +82,7 @@ export default function Home({ navigation, route }: any) {
             />
           </View>
 
-          <View style={[styles.firstDiv, styles.shadowProp]}>
+          <View style={styles.firstDiv}>
             <Types
               compra={'No Cotiza'}
               venta={qatar}
@@ -92,7 +91,7 @@ export default function Home({ navigation, route }: any) {
             />
           </View>
           
-          <View style={[styles.firstDiv, styles.shadowProp]}>
+          <View style={styles.firstDiv}>
             <Types
               compra={ compraEuro }
               venta={ ventaEuro }
@@ -101,7 +100,7 @@ export default function Home({ navigation, route }: any) {
             />
           </View>
           
-          <View style={[styles.firstDiv, styles.shadowProp]}>
+          <View style={styles.firstDiv}>
             <Types
               compra={ compraReal }
               venta={ ventaReal }
@@ -111,8 +110,7 @@ export default function Home({ navigation, route }: any) {
           </View>
 
         </View>
-      </ScrollView>
-      <NavBar navigation={navigation} route={route} />
+      {/* <NavBar navigation={navigation} route={route} /> */}
     </View>
   );
   

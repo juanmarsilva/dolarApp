@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, ScrollView } from 'react-native';
-import { NavBar } from "../../Components/Navbar/NavBar";
+// import { NavBar } from "../../Components/Navbar/NavBar";
 import { styles } from "./ConversorScreenStyles";
 import { useSelector } from "react-redux";
 import { addTwoDecimals } from '../BalanceScreen/BalanceFunctions';
@@ -180,7 +180,7 @@ const ConversorScreen = ({ navigation, route }: any) => {
                 </View>
 
             </ScrollView>
-            <NavBar navigation={navigation} route={route} />
+            {/* <NavBar navigation={navigation} route={route} /> */}
         </View>
     );
 };

@@ -1,4 +1,4 @@
-import { DETAIL_DOLAR, TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE, REAL_PRICE, GET_ALL_DATA, SET_THEME } from './actions';
+import { TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE, REAL_PRICE, GET_ALL_DATA, SET_THEME } from './actions';
 import { functionDays, functionMonths } from './reducerFunctions';
 
 const initialState = {
@@ -29,7 +29,6 @@ const initialState = {
         },
         // uva: 0
     },
-    detailDolar: '',
     infoDolar: {},
     euro: {
         compra: 0,
@@ -93,11 +92,6 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
                         venta: qatar
                     }
                 }
-            }
-        case DETAIL_DOLAR: 
-            return {
-                ...state,
-                detailDolar: payload
             }
         case INFO_DOLAR_PRICE:  
             return {

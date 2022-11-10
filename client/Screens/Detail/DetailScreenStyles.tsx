@@ -24,4 +24,7 @@ export const styles = StyleSheet.create({
         alignContent: 'center',
         justifyContent:'center'
     },
+    prueba:{
+        borderRadius: 10
+    }
 });
