@@ -22,14 +22,6 @@ export const styles = StyleSheet.create({
         marginTop: 30,
         borderRadius: 8,
         backgroundColor: colors.containersBack,
-        shadowColor:colors.background,
-        shadowOffset: {
-            width: 2,
-            height: 4,
-        },
-        shadowOpacity: 1,
-        shadowRadius: 5,
-        elevation: 10,
     },
     title: {
         backgroundColor: 'transparent',

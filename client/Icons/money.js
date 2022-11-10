@@ -2,10 +2,10 @@ import React, { useRef } from 'react';
 import LottieView from 'lottie-react-native';
 import { StyleSheet } from 'react-native';
 
-export default Money = ({focused}) => {
+export default function Money ({focused}) {
     const animation = useRef(null);
   if(focused) animation?.current?.play()
-  const icon = focused?require('./peso.json'):require('./money.json')
+  const icon = require('./money.json')
     return (
         <LottieView
             style={styles.money}
