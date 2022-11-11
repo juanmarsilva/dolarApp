@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../App.style";
 
 const LoadingStyle = StyleSheet.create({
     container: {
@@ -6,11 +7,12 @@ const LoadingStyle = StyleSheet.create({
         height: '100%',
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: colors.background,
     },
     text : {
         fontSize: 30,
-        color: '#000'
+        color: colors.text,
     }
 });
 

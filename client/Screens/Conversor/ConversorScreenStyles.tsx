@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         borderRadius: 12,
-        color: 'black',
+        color: colors.text,
         backgroundColor: colors.containersBack,
     },
     containerAllInputs: {

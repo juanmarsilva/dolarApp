@@ -6,36 +6,37 @@ import { useDispatch, useSelector } from "react-redux";
 import { euroPrice, onTypesOfDolars, realPrice, getAllData } from '../../Redux/actions';
 import { Loading } from "../../Components/Loading/Loading";
 // import { NavBar } from "../../Components/Navbar/NavBar";
+import { useState } from 'react';
 
-export default function Home({ navigation, route }: any) {
+export default function Home({ navigation }: any) {
   
   const dolar = useSelector<any>((state) => state.dolar);
   const euro = useSelector<any>((state: any) => state.euro);
   const real = useSelector<any>(state => state.real);
   const dispatch = useDispatch<any>();
+
+  const [ loading, setLoading ] = useState<boolean>(true);
   
   const { blue, oficial, ccl, bolsa, turista }: any = dolar;
   const { compra: compraEuro, venta: ventaEuro }: any = euro;
   const { compra: compraReal, venta: ventaReal }: any = real;
   let qatar 
   oficial.venta && (qatar = Number(oficial?.venta?.replace(',','.'))  + Number(oficial?.venta?.replace(',','.')) * 1)
-
-  if (
-    !Object.keys(blue).length ||
-    !Object.keys(oficial).length ||
-    !Object.keys(ccl).length
-  ) return <Loading />
-
+  
   useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
     dispatch(onTypesOfDolars());
     dispatch(realPrice());
     dispatch(getAllData());
     return dispatch(euroPrice());
   }, []);
   
+  if(loading) return <Loading />
+  
   return (
     <View style={styles.container}>
-
         <View style={styles.containerCards} >
           <View style={styles.firstDiv}>
             <Types
