@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, ScrollView } from 'react-native';
-// import { NavBar } from "../../Components/Navbar/NavBar";
 import { styles } from "./ConversorScreenStyles";
 import { useSelector } from "react-redux";
 import { addDot, addTwoDecimals } from '../BalanceScreen/BalanceFunctions';
@@ -13,7 +12,7 @@ interface input {
     pesoUruguayo: any;
 }
 
-const ConversorScreen = ({ navigation, route }: any) => {
+const ConversorScreen = () => {
     const dolarsPrice = useSelector((state: any) => state.dolar);
     const euroPrice = useSelector((state:any) => state.euro);
     const realPrice = useSelector( (state:any) => state.real);
@@ -42,10 +41,12 @@ const ConversorScreen = ({ navigation, route }: any) => {
         const change = addTwoDecimals(numberValue * replaceComaAndTurnNumber(money))
         return addDot(change)
     }
+
     const calculateDolar = (numberValue:number, money:string) => {
         const change = addTwoDecimals(numberValue / replaceComaAndTurnNumber(money))
         return addDot(change)
     }
+
     const handleChange = (value: string, name: any) => {
         const withoutDot = value.split('.').join('')
         const numberValue = replaceComaAndTurnNumber(withoutDot)
@@ -64,14 +65,13 @@ const ConversorScreen = ({ navigation, route }: any) => {
             const dolar = calculateDolar(numberValue, arrayOfNumbers[name])
             const transformDolar = dolar.split('.').join('')
             const numberDolar = replaceComaAndTurnNumber(transformDolar)
-            console.log(numberDolar)
             const finalNumber = arrayOfNumbers.map(money => allInOne(numberDolar,money))
             setInput({
                 dolar: dolar,
-                euro: name === 0? newValue : finalNumber[0],
-                real: name === 1? newValue : finalNumber[1],
-                pesoChileno: name === 2? newValue : finalNumber[2],
-                pesoUruguayo: name === 3? newValue : finalNumber[3]
+                euro: name === 0 ? newValue : finalNumber[0],
+                real: name === 1 ? newValue : finalNumber[1],
+                pesoChileno: name === 2 ? newValue : finalNumber[2],
+                pesoUruguayo: name === 3 ? newValue : finalNumber[3]
             })
         }
     };
@@ -132,7 +132,6 @@ const ConversorScreen = ({ navigation, route }: any) => {
                 </View>
 
             </ScrollView>
-            {/* <NavBar navigation={navigation} route={route} /> */}
         </View>
     );
 };
