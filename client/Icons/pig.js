@@ -2,7 +2,7 @@ import LottieView from 'lottie-react-native';
 import { StyleSheet } from 'react-native';
 import React, { useRef } from 'react';
 
-export default Pig = ({focused}) => {
+export default function Pig ({focused}) {
     const animation = useRef(null);
   if(focused) animation?.current?.play(45,112)
     return (
