@@ -1,24 +1,13 @@
 import React from "react";
 import { View, Text, Pressable } from 'react-native';
 import types from "./TypesStyles";
-import { useDispatch } from 'react-redux';
-import { getAllData } from "../../Redux/actions";
 
-export const Types = ({ compra, venta, tipo, navigation }: any) => {
+export const Types = ({ compra, venta, tipo }: any) => {
 
-  const dispatch = useDispatch<any>();
-
-  const handleClick = (e: any, tipo: string) => {
-    e.preventDefault();
-    if(tipo === 'blue' || tipo === 'oficial') {
-      dispatch(getAllData())
-      navigation.navigate("Detail",{ tipo });
-    }
-  };
   const name = tipo === 'Euro oficial' || tipo === 'Real oficial'? tipo : `Dolar ${tipo[0].toUpperCase() + tipo.substring(1)}`
 
   return (
-    <Pressable onPress={(e) => handleClick(e, tipo)}>
+    <Pressable>
       <View style={types.container}>
         <Text style={types.title}>{name}</Text>
         <View style={{ flexDirection: "row" }}>

@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './DetailScreenStyles';
-// import { NavBar } from '../../Components/Navbar/NavBar';
 import { useSelector } from 'react-redux';
 import { Dimensions } from "react-native";
-// import { infoAboutDolarPrice } from '../../Redux/actions';
 import { LineChart } from 'react-native-chart-kit'
 import PersonalButton from '../../Components/Buttons/Button';
 import { colors } from '../../App.style';
 
-const DetailScreen = ({ navigation, route }: any) => {
+const DetailScreen = ({ route }: any) => {
     const type = route.params.tipo;
     const dolar = useSelector<any>(state => state.evolution);
-    // const infoDolar = useSelector<any>(state => state.infoDolar);
     const [days, months] = dolar[type]
     const [active, setActive] = useState('day')
     const [date, setDate] = useState(days)
@@ -44,7 +41,6 @@ const DetailScreen = ({ navigation, route }: any) => {
     return (
         <View style={styles.container} >
             <Text style={styles.title} > {`Dolar ${type}`} </Text>
-            {/* <NavBar navigation={navigation} route={route} /> */}
             <View style={styles.containerGraf}>
                 <LineChart
                     data={data}
@@ -69,12 +65,12 @@ const DetailScreen = ({ navigation, route }: any) => {
             </View>
             <PersonalButton 
                 text="Diario"
-                active={active === 'day'}
+                color={active === 'day'? colors.selectedIntense : colors.selected}
                 onPress={()=>onChangeChart('day')}
             />
             <PersonalButton 
                 text="Mensual"
-                active={active === 'month'}
+                color={active === 'month'? colors.selectedIntense : colors.selected}
                 onPress={()=>onChangeChart('month')}
             />
         </View>
