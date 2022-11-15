@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, ScrollView } from "react-native";
-// import { NavBar } from "../../Components/Navbar/NavBar";
 import balanceStyle from "./BalanceScreenStyles";
 import Table from "./Table";
 const TOKEN = process.env.REACT_APP_TOKEN
@@ -60,7 +59,6 @@ const BalanceScreen = ({ navigation, route }: any) => {
                 <Table number={number.toString()} inflacion={inflacion}/>
                 <Text style={balanceStyle.textUVA}>*Este valor se obtuvo con la inflación de los últimos 3 meses, por lo que la inversión real puede variar</Text>
             </ScrollView>
-            {/* <NavBar navigation={navigation} route={route} /> */}
         </View>
     );
 };

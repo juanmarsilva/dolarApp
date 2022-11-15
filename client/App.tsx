@@ -26,48 +26,6 @@ export default function App() {
         />
         <Stack.Navigator
         >
-          {/* <Stack.Screen
-            name="Home"
-            component={Home}
-            options={{
-              title: 'Home',
-              headerStyle: {
-                backgroundColor: colors.otherBackground,
-              },
-              headerTintColor: colors.text,
-              headerTitleStyle: {
-                fontWeight: "bold",
-              },
-            }}
-          />
-          <Stack.Screen
-            name="Conversor"
-            component={ConversorScreen}
-            options={{
-              title: "Conversor",
-              headerStyle: {
-                backgroundColor: colors.otherBackground,
-              },
-              headerTintColor: colors.text,
-              headerTitleStyle: {
-                fontWeight: "bold",
-              },
-            }}
-          />
-          <Stack.Screen
-            name="Balance"
-            component={BalanceScreen}
-            options={{
-              title: "Balance",
-              headerStyle: {
-                backgroundColor: colors.otherBackground,
-              },
-              headerTintColor: colors.text,
-              headerTitleStyle: {
-                fontWeight: "bold",
-              },
-            }}
-          /> */}
           <Stack.Screen
             name='Home.'
             options={{

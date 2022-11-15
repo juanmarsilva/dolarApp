@@ -20,10 +20,10 @@ const firstViewStyle = StyleSheet.create({
       color: colors.text
     },
     buy: {
-      color: 'green',
+      color: colors.buyText,
     },
     sell: {
-      color: 'red',
+      color: colors.sellText,
     },
 
   });

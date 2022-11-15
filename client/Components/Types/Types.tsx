@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text, Pressable } from 'react-native';
 import types from "./TypesStyles";
-// import s from "./Types.module.css";
 import { useDispatch } from 'react-redux';
-import { getAllData, infoAboutDolarPrice } from "../../Redux/actions";
+import { getAllData } from "../../Redux/actions";
 
 export const Types = ({ compra, venta, tipo, navigation }: any) => {
 
@@ -11,7 +10,6 @@ export const Types = ({ compra, venta, tipo, navigation }: any) => {
 
   const handleClick = (e: any, tipo: string) => {
     e.preventDefault();
-    // dispatch(infoAboutDolarPrice(tipo));
     if(tipo === 'blue' || tipo === 'oficial') {
       dispatch(getAllData())
       navigation.navigate("Detail",{ tipo });

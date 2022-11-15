@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, Text, TextInput, ScrollView } from 'react-native';
 import { styles } from "./ConversorScreenStyles";
 import { useSelector } from "react-redux";
@@ -13,14 +13,8 @@ interface input {
 }
 
 const ConversorScreen = () => {
-    const dolarsPrice = useSelector((state: any) => state.dolar);
-    const euroPrice = useSelector((state:any) => state.euro);
-    const realPrice = useSelector( (state:any) => state.real);
 
-    const { oficial }: any = dolarsPrice;
-
-    const { dolarEuro, dolarReal, dolarPesoChileno, dolarPesoUruguayo, pesoChilenoPrice, pesoUruguayoPrice }:any = useSelector<any>(state => state.conversor);
-    
+    const { dolarEuro, dolarReal, dolarPesoChileno, dolarPesoUruguayo }:any = useSelector<any>(state => state.conversor);
     const arrayOfNumbers = [dolarEuro, dolarReal, dolarPesoChileno, dolarPesoUruguayo]
     const initialNumber = arrayOfNumbers.map(money => money.slice(0,money.length-1))
 
@@ -68,10 +62,10 @@ const ConversorScreen = () => {
             const finalNumber = arrayOfNumbers.map(money => allInOne(numberDolar,money))
             setInput({
                 dolar: dolar,
-                euro: name === 0 ? newValue : finalNumber[0],
-                real: name === 1 ? newValue : finalNumber[1],
-                pesoChileno: name === 2 ? newValue : finalNumber[2],
-                pesoUruguayo: name === 3 ? newValue : finalNumber[3]
+                euro: finalNumber[0],
+                real: finalNumber[1],
+                pesoChileno: finalNumber[2],
+                pesoUruguayo: finalNumber[3]
             })
         }
     };
