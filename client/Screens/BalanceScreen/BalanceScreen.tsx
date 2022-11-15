@@ -4,7 +4,7 @@ import balanceStyle from "./BalanceScreenStyles";
 import Table from "./Table";
 const TOKEN = process.env.REACT_APP_TOKEN
 
-const BalanceScreen = ({ navigation, route }: any) => {
+const BalanceScreen = () => {
     const [number, setNumber] = useState<number>(0);
     const [uva, setUva] = useState<any>({})
     let inflacion:any = null

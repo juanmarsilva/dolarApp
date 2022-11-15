@@ -11,7 +11,7 @@ interface Props {
 export default function PersonalButton ({ text, onPress, color }:Props) {
 
     return (
-        <TouchableHighlight underlayColor={'#0f3633'} activeOpacity={0.5} onPress={onPress} style={{...styles.containerButton, backgroundColor:color}}>
+        <TouchableHighlight underlayColor={color} activeOpacity={0.5} onPress={onPress} style={{...styles.containerButton, backgroundColor:color}}>
             <Text style={styles.text} >
                 {text}
             </Text>

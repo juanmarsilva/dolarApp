@@ -16,7 +16,7 @@ export const colors = {
   text: tema() === 'light'?'#000' :'#fff' ,
   contrarianText: tema() === 'light'? '#fff':'#000',
   buttonContainer: '#344e41',
-  buyText:  tema() === 'light'? '#344e41':'#a5eea0',
-  sellText:  tema() === 'light'? '#e20000':'#ff6565',
+  buyText:  tema() === 'light'? '#344e41':'#009929',
+  sellText:  tema() === 'light'? '#870f0f':'#ff6565',
 };
 
