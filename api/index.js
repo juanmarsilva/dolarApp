@@ -1,6 +1,12 @@
-const http = require('http')
-const server = http.createServer()
+const server = require('./src/app')
+const { connexion } = require('./src/db.js');
+const { PORT } = process.env
 
-server.listen(3000,() => {
-    console.log('corriendo en puerto 3000')
-})
+
+// Syncing all the models at once.
+connexion.sync({ force: false }).then(() => {
+    server.listen(PORT, () => {
+        console.log(`%s listening at ${PORT}`);
+        // eslint-disable-line no-console
+    });
+});
