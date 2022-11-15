@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ActivityIndicator  } from "react-native";
 import { Types } from "../../Components/Types/Types";
 import { styles } from "./HomeScreenStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { euroPrice, onTypesOfDolars, realPrice, getAllData } from '../../Redux/actions';
 import { Loading } from "../../Components/Loading/Loading";
-// import { NavBar } from "../../Components/Navbar/NavBar";
 import { useState } from 'react';
 
 export default function Home({ navigation }: any) {
@@ -20,19 +19,20 @@ export default function Home({ navigation }: any) {
   const { blue, oficial, ccl, bolsa, turista }: any = dolar;
   const { compra: compraEuro, venta: ventaEuro }: any = euro;
   const { compra: compraReal, venta: ventaReal }: any = real;
-  let qatar 
+  let qatar:any 
   oficial.venta && (qatar = Number(oficial?.venta?.replace(',','.'))  + Number(oficial?.venta?.replace(',','.')) * 1)
   
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
     dispatch(onTypesOfDolars());
     dispatch(realPrice());
     dispatch(getAllData());
     return dispatch(euroPrice());
   }, []);
-  
+
+  useEffect(() => {
+    qatar && euro.compra && real.compra && setLoading(false)
+  }, [qatar, euro, real])
+
   if(loading) return <Loading />
   
   return (
@@ -111,7 +111,6 @@ export default function Home({ navigation }: any) {
           </View>
 
         </View>
-      {/* <NavBar navigation={navigation} route={route} /> */}
     </View>
   );
   
