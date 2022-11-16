@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 
-
 module.exports = (sequelize) => {
     sequelize.define('evolution', {
         name: {
@@ -16,4 +15,4 @@ module.exports = (sequelize) => {
     {
         timestamps: false
     });
-}
+};
