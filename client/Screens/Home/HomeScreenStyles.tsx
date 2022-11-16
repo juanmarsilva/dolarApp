@@ -26,4 +26,8 @@ export const styles = StyleSheet.create({
     title: {
         backgroundColor: 'transparent',
     },
+    buttons: {
+        width:'100%',
+        marginTop: 20
+    }
 });

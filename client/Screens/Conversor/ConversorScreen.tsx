@@ -62,10 +62,10 @@ const ConversorScreen = () => {
             const finalNumber = arrayOfNumbers.map(money => allInOne(numberDolar,money))
             setInput({
                 dolar: dolar,
-                euro: finalNumber[0],
-                real: finalNumber[1],
-                pesoChileno: finalNumber[2],
-                pesoUruguayo: finalNumber[3]
+                euro:name === 0? newValue : finalNumber[0],
+                real:name === 1? newValue : finalNumber[1],
+                pesoChileno:name === 2? newValue : finalNumber[2],
+                pesoUruguayo:name === 3? newValue : finalNumber[3]
             })
         }
     };

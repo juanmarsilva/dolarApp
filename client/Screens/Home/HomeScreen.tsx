@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
-import { View, ActivityIndicator  } from "react-native";
+import { View } from "react-native";
 import { Types } from "../../Components/Types/Types";
 import { styles } from "./HomeScreenStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { euroPrice, onTypesOfDolars, realPrice, getAllData } from '../../Redux/actions';
 import { Loading } from "../../Components/Loading/Loading";
 import { useState } from 'react';
+import PersonalButton from "../../Components/Buttons/Button";
+import { colors } from "../../App.style";
 
 export default function Home({ navigation }: any) {
   
@@ -34,6 +36,11 @@ export default function Home({ navigation }: any) {
   }, [qatar, euro, real])
 
   if(loading) return <Loading />
+
+  const seeEvolution = (tipo:string) => {
+      dispatch(getAllData())
+      navigation.navigate("Detail",{tipo});
+  }
   
   return (
     <View style={styles.container}>
@@ -108,6 +115,10 @@ export default function Home({ navigation }: any) {
               tipo={"Real oficial"}
               navigation={navigation}
             />
+          </View>
+          <View style= {styles.buttons}>
+            <PersonalButton text={'Evolución dolar blue'} onPress={() => seeEvolution('blue')} color={colors.containersBack}/>
+            <PersonalButton text={'Evolución dolar oficial'} onPress={() => seeEvolution('oficial')} color={colors.containersBack}/>
           </View>
 
         </View>

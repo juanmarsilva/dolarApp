@@ -30,8 +30,7 @@ const balanceStyle = StyleSheet.create({
         backgroundColor: colors.containersBack
     },
     boxDown: {
-        height: 1000,
-        marginBottom: 100
+        marginBottom: 10
     },
     table:{
         width: '80%',
