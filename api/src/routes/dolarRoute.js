@@ -1,9 +1,9 @@
 const { Router } = require('express');
 
-const { getAllCurrencies } = require('../controllers/allControllers');
+const { getAllDolars } = require('../controllers/getDolar');
 
 const router = Router();
 
-router.get('/', getAllCurrencies);
+router.get('/', getAllDolars);
 
 module.exports = router;

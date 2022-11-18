@@ -2,19 +2,10 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('exchanges', {
-        arsUsd: {
+        name : {
             type: DataTypes.STRING,
         },
-        eurUsd: {
-            type: DataTypes.STRING,
-        },
-        uruUsd: {
-            type: DataTypes.STRING,
-        },
-        chUsd: {
-            type: DataTypes.STRING,
-        },
-        realUsd: {
+        value: {
             type: DataTypes.STRING,
         },
     },{
