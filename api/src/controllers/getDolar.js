@@ -1,4 +1,3 @@
-const axios = require('axios') 
 const { Currency } = require('../db')
 
 const getAllDolars = async (req, res) => {
