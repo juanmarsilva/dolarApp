@@ -11,7 +11,7 @@ const router = Router();
 
 
 router.use('/dolar', dolarRoute);
-// mandar por query el tipo de dolar del que se quiere la evolucion
+// mandar por query el type (blue, oficial o inflacion) del que se quiere la evolucion
 router.use('/evolution', evolutionRoute)
 
 module.exports = router;

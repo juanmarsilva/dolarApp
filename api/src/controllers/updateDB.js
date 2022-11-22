@@ -1,14 +1,16 @@
 const convert = require('xml-js')
 const axios = require('axios');
 const { Currency, Evolution } = require('../db');
+const { BRCA_TOKEN } = process.env
 
 
 const getAllCurrencies = async () => {
     const allData = await getAllData()
     const dolarData = getPrices(allData)
     const evolutionDolar = getEvolution(allData)
+    const evolutionInflation = await getInflation()
     await Currency.bulkCreate(dolarData)
-    await Evolution.bulkCreate(evolutionDolar)
+    await Evolution.bulkCreate([...evolutionDolar,evolutionInflation])
 };
 
 const getAllData = async () => {
@@ -97,6 +99,32 @@ const descomposition = (name, objectEvolution) => {
     }
 }
 
+const getInflation = async () => {
+    try{
+        const response = await axios.get('https://api.estadisticasbcra.com/inflacion_mensual_oficial',{
+            'headers':{
+                'Authorization':`Bearer ${BRCA_TOKEN}`
+            }
+        })
+        // inflacion de los ultimos 12 meses
+        const inflation = response.data.slice(-12)
+        // transformo en un objeto con key (mes), value (%)
+        const arrangedInflation = inflation.map(month => {
+            const m = month.d.split('-')[1]
+            const value = month.v
+            return {
+                [m] : value
+            }
+        })
+        return {
+            name: 'inflacion',
+            months: arrangedInflation
+        }
+    }
+    catch(error) {
+        console.log('no',error)
+    }
+}
 
 module.exports = {
     getAllCurrencies
