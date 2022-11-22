@@ -1,68 +1,101 @@
+const convert = require('xml-js')
 const axios = require('axios');
-const { Currency } = require('../db');
+const { Currency, Evolution } = require('../db');
 
-const getAllCurrencies = async (req, res) => {
-    const dolarData = await getDolarsInfo();
-    const euroData = await euroInfo();
-    const realData = await realInfo();
-    const allData = [...dolarData, euroData, realData];
-    await Currency.bulkCreate(allData)
+
+const getAllCurrencies = async () => {
+    const allData = await getAllData()
+    const dolarData = getPrices(allData)
+    const evolutionDolar = getEvolution(allData)
+    await Currency.bulkCreate(dolarData)
+    await Evolution.bulkCreate(evolutionDolar)
 };
 
-const getDolarsInfo = async () => {
+const getAllData = async () => {
     try {
-        const data = await axios('https://www.dolarsi.com/api/api.php?type=valoresprincipales');
-        const allData = data.data.filter(obj => obj.casa.nombre === 'Dolar Oficial' || obj.casa.nombre === 'Dolar Blue' || obj.casa.nombre === 'Dolar Contado con Liqui' || obj.casa.nombre === 'Dolar Bolsa' || obj.casa.nombre === 'Dolar turista');
-        const allInfo = allData.map(e => {
-            return {
-                type: e.casa.nombre,
-                buyPrice: e.casa.compra,
-                sellPrice: e.casa.venta,
-            }
-        })
-        const sellOficial = allInfo.find(dolar => dolar.type === 'Dolar Oficial').sellPrice
-        const dolarQatar = Number(sellOficial.replace(',','.')) + Number(sellOficial.replace(',','.')) * 1
-        allInfo.push({
-            type: 'Dolar Qatar',
-            buyPrice: 'No Cotiza',
-            sellPrice: dolarQatar
-        })
-        return allInfo;
-    } catch (err) {
-        console.log(err);
-    };
-};
+        const dataDolar = await axios.get("https://www.dolarsi.com/api/dolarSiInfo.xml")
+        const json = convert.xml2json(dataDolar.data, {compact: true, spaces: 4});
+        const jsonParsed = JSON.parse(json);
+        return jsonParsed
+    }
+    catch (error) {
+        console.log(error)
+    }
+}
 
-const euroInfo = async () => {
-    try {
-        const data = await axios('https://www.dolarsi.com/api/api.php?type=euro');
-        const euroInfo = data.data.filter(obj => obj.casa.nombre === 'Banco Nación');
-        const euroPrice = {
-            type: 'Euro Oficial',
-            buyPrice: euroInfo[0].casa.compra,
-            sellPrice: euroInfo[0].casa.venta,
+const getPrices = (allData) => {
+    const data = allData.cotiza.valores_principales
+    const arrayData = []
+    Object.values(data).forEach(e => {
+        if(e.nombre._text !== 'Bitcoin' && e.nombre._text !== 'Dolar Soja'){
+            e.compra.text = twoDecimals(e.compra._text)
+            e.venta._text = twoDecimals(e.venta._text)
+            arrayData.push({
+                type: e.nombre._text === 'Dolar Contado con Liqui'? 'Dolar CCL' : e.nombre._text,
+                buyPrice: e.compra._text,
+                sellPrice: e.venta._text,
+            }) 
         }
-        return euroPrice;
-    } catch (err) {
-        console.log(err);
-    };
+    })
+    
+    const sellOficial = arrayData.find(dolar => dolar.type === 'Dolar Oficial').sellPrice
+    const dolarQatar = Number(sellOficial.replace(',','.')) + Number(sellOficial.replace(',','.')) * 1
+    arrayData.push({
+        type: 'Dolar Qatar',
+        buyPrice: 'No Cotiza',
+        sellPrice: dolarQatar.toString().replace('.',',')
+    })
+    const euro = allData.cotiza.cotizador.casa303
+    const real = allData.cotiza.cotizador.casa304
+    arrayData.push(otherChange(euro))
+    arrayData.push(otherChange(real))
+    return arrayData;
 };
 
-const realInfo = async () => {
-    try {
-        const data = await axios('https://www.dolarsi.com/api/api.php?type=real');
-        const realInfo = data.data.filter(obj => obj.casa.nombre === 'Banco Nación');
-        const realPrice = {
-            type: 'Real Oficial',
-            buyPrice: realInfo[0].casa.compra,
-            sellPrice: realInfo[0].casa.venta,
+const otherChange = (money) => {
+    return {
+        type: money.nombre._text + ' oficial',
+        buyPrice: money.compra._text,
+        sellPrice: money.venta._text
+    }
+};
+
+const twoDecimals = (string) => {
+    if(string.toLowerCase() === 'no cotiza') return string
+    const [integer, decimals] = string.split(',')
+    const twoDecim = decimals.slice(0,2)
+    return `${integer},${twoDecim}`
+}
+
+const getEvolution = (allData) => {
+    const oficialEvolution = allData.cotiza.evolucion_dolar.oficial
+    const blueEvolution = allData.cotiza.evolucion_dolar.blue
+    const oficialArray = descomposition('oficial',oficialEvolution)
+    const blueArray = descomposition('blue',blueEvolution)
+    return [oficialArray, blueArray]
+}
+
+const descomposition = (name, objectEvolution) => {
+    let countDays = 0
+    let countMonths = 0
+    const days = Object.values(objectEvolution.mes).map(value => {
+        countDays ++
+        return {
+            [countDays]: value._text
         }
-        return realPrice;
-    } catch (err) {
-        console.log(err);
-    };
-};
-
+    })
+    const months = Object.values(objectEvolution.anio).map(value => {
+        countMonths ++
+        return {
+            [countMonths]: value._text
+        }
+    })
+    return {
+        name,
+        days,
+        months
+    }
+}
 
 
 module.exports = {
