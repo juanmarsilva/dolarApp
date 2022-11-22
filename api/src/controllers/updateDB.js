@@ -145,6 +145,51 @@ const getExchanges = (allData) => {
     return arrayExchanges
 }
 
+const updateDatabase = async () => {
+    const allData = await getAllData()
+    const dolarData = getPrices(allData)
+    dolarData.forEach(async dolar => {
+        const dolarDB = await Currency.findOne({ 
+            where: {
+                type: dolar.type
+            }
+        })
+        dolarDB.set({
+            buyPrice: dolar.buyPrice,
+            sellPrice: dolar.sellPrice
+        })
+        await dolarDB.save()
+    })
+    const evolutionDolar = getEvolution(allData)
+    const evolutionInflation = await getInflation()
+    const allEvolution = [...evolutionDolar,evolutionInflation]
+    allEvolution.forEach(async type => {
+        const evolutionDB = await Evolution.findOne({
+            where: {
+                name: type.name
+            }
+        })
+        evolutionDB.set({
+            months: type.months,
+            days: type.days
+        })
+        await evolutionDB.save()
+    })
+    const exchanges = getExchanges(allData)
+    exchanges.forEach(async type => {
+        const exchangeDB = await Exchanges.findOne({
+            where: {
+                name: type.name
+            }
+        })
+        exchangeDB.set({
+            value: type.value
+        })
+        await exchangeDB.save()
+    })
+}
+
 module.exports = {
-    getAllCurrencies
+    getAllCurrencies,
+    updateDatabase
 };

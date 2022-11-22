@@ -11,8 +11,5 @@ module.exports = (sequelize) => {
         sellPrice: {
             type: DataTypes.STRING
         }
-    },
-    {
-        timestamps: false
     });
 };
