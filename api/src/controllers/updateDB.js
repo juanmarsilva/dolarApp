@@ -1,16 +1,18 @@
 const convert = require('xml-js')
 const axios = require('axios');
-const { Currency, Evolution } = require('../db');
+const { Currency, Evolution, Exchanges } = require('../db');
 const { BRCA_TOKEN } = process.env
 
 
 const getAllCurrencies = async () => {
     const allData = await getAllData()
     const dolarData = getPrices(allData)
+    await Currency.bulkCreate(dolarData)
     const evolutionDolar = getEvolution(allData)
     const evolutionInflation = await getInflation()
-    await Currency.bulkCreate(dolarData)
     await Evolution.bulkCreate([...evolutionDolar,evolutionInflation])
+    const exchanges = getExchanges(allData)
+    await Exchanges.bulkCreate(exchanges)
 };
 
 const getAllData = async () => {
@@ -124,6 +126,23 @@ const getInflation = async () => {
     catch(error) {
         console.log('no',error)
     }
+}
+
+const getExchanges = (allData) => {
+    const exchanges = allData.cotiza.Monedas
+    const arrayExchanges = []
+    Object.values(exchanges).forEach(money => {
+        const coin = money.nombre._text.split(' / ')[1]
+        if(coin === 'Euro' || coin === 'Real' || coin === 'Peso Chileno' || coin === 'Peso Uruguayo'){
+            const name = money.nombre._text.replace('ó', 'o')
+            const value = twoDecimals(money.venta._text)
+            arrayExchanges.push({
+                name,
+                value
+            }) 
+        }
+    })
+    return arrayExchanges
 }
 
 module.exports = {
