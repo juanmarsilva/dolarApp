@@ -8,8 +8,8 @@ module.exports = (sequelize) => {
         value: {
             type: DataTypes.STRING,
         },
-    },{
+    },
+    {
         timestamps: false
     });
-
 }

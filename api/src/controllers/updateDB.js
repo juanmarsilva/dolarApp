@@ -1,14 +1,18 @@
 const convert = require('xml-js')
 const axios = require('axios');
-const { Currency, Evolution } = require('../db');
+const { Currency, Evolution, Exchanges } = require('../db');
+const { BRCA_TOKEN } = process.env
 
 
 const getAllCurrencies = async () => {
     const allData = await getAllData()
     const dolarData = getPrices(allData)
-    const evolutionDolar = getEvolution(allData)
     await Currency.bulkCreate(dolarData)
-    await Evolution.bulkCreate(evolutionDolar)
+    const evolutionDolar = getEvolution(allData)
+    const evolutionInflation = await getInflation()
+    await Evolution.bulkCreate([...evolutionDolar,evolutionInflation])
+    const exchanges = getExchanges(allData)
+    await Exchanges.bulkCreate(exchanges)
 };
 
 const getAllData = async () => {
@@ -97,7 +101,95 @@ const descomposition = (name, objectEvolution) => {
     }
 }
 
+const getInflation = async () => {
+    try{
+        const response = await axios.get('https://api.estadisticasbcra.com/inflacion_mensual_oficial',{
+            'headers':{
+                'Authorization':`Bearer ${BRCA_TOKEN}`
+            }
+        })
+        // inflacion de los ultimos 12 meses
+        const inflation = response.data.slice(-12)
+        // transformo en un objeto con key (mes), value (%)
+        const arrangedInflation = inflation.map(month => {
+            const m = month.d.split('-')[1]
+            const value = month.v
+            return {
+                [m] : value
+            }
+        })
+        return {
+            name: 'inflacion',
+            months: arrangedInflation
+        }
+    }
+    catch(error) {
+        console.log('no',error)
+    }
+}
+
+const getExchanges = (allData) => {
+    const exchanges = allData.cotiza.Monedas
+    const arrayExchanges = []
+    Object.values(exchanges).forEach(money => {
+        const coin = money.nombre._text.split(' / ')[1]
+        if(coin === 'Euro' || coin === 'Real' || coin === 'Peso Chileno' || coin === 'Peso Uruguayo'){
+            const name = money.nombre._text.replace('ó', 'o')
+            const value = twoDecimals(money.venta._text)
+            arrayExchanges.push({
+                name,
+                value
+            }) 
+        }
+    })
+    return arrayExchanges
+}
+
+const updateDatabase = async () => {
+    const allData = await getAllData()
+    const dolarData = getPrices(allData)
+    dolarData.forEach(async dolar => {
+        const dolarDB = await Currency.findOne({ 
+            where: {
+                type: dolar.type
+            }
+        })
+        dolarDB.set({
+            buyPrice: dolar.buyPrice,
+            sellPrice: dolar.sellPrice
+        })
+        await dolarDB.save()
+    })
+    const evolutionDolar = getEvolution(allData)
+    const evolutionInflation = await getInflation()
+    const allEvolution = [...evolutionDolar,evolutionInflation]
+    allEvolution.forEach(async type => {
+        const evolutionDB = await Evolution.findOne({
+            where: {
+                name: type.name
+            }
+        })
+        evolutionDB.set({
+            months: type.months,
+            days: type.days
+        })
+        await evolutionDB.save()
+    })
+    const exchanges = getExchanges(allData)
+    exchanges.forEach(async type => {
+        const exchangeDB = await Exchanges.findOne({
+            where: {
+                name: type.name
+            }
+        })
+        exchangeDB.set({
+            value: type.value
+        })
+        await exchangeDB.save()
+    })
+}
 
 module.exports = {
-    getAllCurrencies
+    getAllCurrencies,
+    updateDatabase
 };
