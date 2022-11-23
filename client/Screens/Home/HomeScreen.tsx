@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Types } from "../../Components/Types/Types";
 import { styles } from "./HomeScreenStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { euroPrice, onTypesOfDolars, realPrice, getAllData } from '../../Redux/actions';
+import { euroPrice, onTypesOfDolars, realPrice, getAllData, getAllCurrencies } from '../../Redux/actions';
 import { Loading } from "../../Components/Loading/Loading";
 import { useState } from 'react';
 import PersonalButton from "../../Components/Buttons/Button";
@@ -12,27 +12,23 @@ import { colors } from "../../App.style";
 export default function Home({ navigation }: any) {
   
   const dolar = useSelector<any>((state) => state.dolar);
-  const euro = useSelector<any>((state: any) => state.euro);
-  const real = useSelector<any>(state => state.real);
+  const euro:any = useSelector<any>((state: any) => state.euro);
+  const real:any = useSelector<any>(state => state.real);
   const dispatch = useDispatch<any>();
 
   const [ loading, setLoading ] = useState<boolean>(true);
   
-  const { blue, oficial, ccl, bolsa, turista }: any = dolar;
-  const { compra: compraEuro, venta: ventaEuro }: any = euro;
-  const { compra: compraReal, venta: ventaReal }: any = real;
-  let qatar:any 
-  oficial.venta && (qatar = Number(oficial?.venta?.replace(',','.'))  + Number(oficial?.venta?.replace(',','.')) * 1)
+  const { blue, oficial, CCL, bolsa, turista, qatar }: any = dolar;
   
   useEffect(() => {
-    dispatch(onTypesOfDolars());
-    dispatch(realPrice());
-    dispatch(getAllData());
-    return dispatch(euroPrice());
+    dispatch(getAllCurrencies());
+    // dispatch(realPrice());
+    // dispatch(getAllData());
+    // return dispatch(euroPrice());
   }, []);
 
   useEffect(() => {
-    qatar && euro.compra && real.compra && setLoading(false)
+    qatar.sellPrice && euro.buyPrice && real.buyPrice && setLoading(false)
   }, [qatar, euro, real])
 
   if(loading) return <Loading />
@@ -47,8 +43,8 @@ export default function Home({ navigation }: any) {
         <View style={styles.containerCards} >
           <View style={styles.firstDiv}>
             <Types
-              compra={oficial.compra}
-              venta={oficial.venta}
+              compra={oficial.buyPrice}
+              venta={oficial.sellPrice}
               tipo={"oficial"}
               navigation={navigation}
             />
@@ -56,8 +52,8 @@ export default function Home({ navigation }: any) {
 
           <View style={styles.firstDiv}>
             <Types 
-              compra={blue.compra} 
-              venta={blue.venta} 
+              compra={blue.buyPrice} 
+              venta={blue.sellPrice} 
               tipo={"blue"}
               navigation={navigation}
             />
@@ -65,8 +61,8 @@ export default function Home({ navigation }: any) {
 
           <View style={styles.firstDiv}>
             <Types 
-              compra={ccl.compra} 
-              venta={ccl.venta} 
+              compra={CCL.buyPrice} 
+              venta={CCL.sellPrice} 
               tipo={"CCL"}
               navigation={navigation} 
             />
@@ -74,8 +70,8 @@ export default function Home({ navigation }: any) {
 
           <View style={styles.firstDiv}>
             <Types 
-              compra={bolsa.compra} 
-              venta={bolsa.venta} 
+              compra={bolsa.buyPrice} 
+              venta={bolsa.sellPrice} 
               tipo={"bolsa"}
               navigation={navigation} 
             />
@@ -83,8 +79,8 @@ export default function Home({ navigation }: any) {
 
           <View style={styles.firstDiv}>
             <Types
-              compra={turista.compra}
-              venta={turista.venta}
+              compra={turista.buyPrice}
+              venta={turista.sellPrice}
               tipo={"turista"}
               navigation={navigation}
             />
@@ -92,8 +88,8 @@ export default function Home({ navigation }: any) {
 
           <View style={styles.firstDiv}>
             <Types
-              compra={'No Cotiza'}
-              venta={qatar}
+              compra={qatar.buyPrice}
+              venta={qatar.sellPrice}
               tipo={"qatar"}
               navigation={navigation}
             />
@@ -101,8 +97,8 @@ export default function Home({ navigation }: any) {
           
           <View style={styles.firstDiv}>
             <Types
-              compra={ compraEuro }
-              venta={ ventaEuro }
+              compra={ euro.buyPrice }
+              venta={ euro.sellPrice }
               tipo={"Euro oficial"}
               navigation={navigation}
             />
@@ -110,8 +106,8 @@ export default function Home({ navigation }: any) {
           
           <View style={styles.firstDiv}>
             <Types
-              compra={ compraReal }
-              venta={ ventaReal }
+              compra={ real.buyPrice }
+              venta={ real.sellPrice }
               tipo={"Real oficial"}
               navigation={navigation}
             />

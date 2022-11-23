@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import store from "./Redux/store";
 import 'react-native-gesture-handler';
 import { Provider} from 'react-redux';
@@ -8,10 +9,12 @@ import { colors } from "./App.style";
 import { StatusBar } from "react-native";
 import DetailScreen from "./Screens/Detail/DetailScreen";
 import BottomTabContainer from "./Screens/BottomTabContainer";
+// import dotenv from 'dotenv';
+import axios from 'axios';
 
+// dotenv.config();
 
-// https://cors-solucion.herokuapp.com/
-// const URL = 'https://api-dolar-argentina.herokuapp.com/api/'
+// axios.defaults.baseURL = process.env.REACT_APP_API
 
 const Stack = createNativeStackNavigator();
 

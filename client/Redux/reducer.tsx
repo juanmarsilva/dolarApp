@@ -1,42 +1,41 @@
-import { TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE, REAL_PRICE, GET_ALL_DATA, SET_THEME } from './actions';
+import { TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE, REAL_PRICE, GET_ALL_DATA, SET_THEME, GET_ALL_CURRENCIES } from './actions';
 import { functionDays, functionMonths } from './reducerFunctions';
 
 const initialState = {
     dolar: {
         oficial: {
-            compra: 0,
-            venta: 0,
+            buyPrice: 0,
+            sellPrice: 0,
         },
         blue: {
-            compra: 0,
-            venta: 0,
+            buyPrice: 0,
+            sellPrice: 0,
         },
-        ccl: {
-            compra: 0,
-            venta: 0,
+        CCL: {
+            buyPrice: 0,
+            sellPrice: 0,
         },
         bolsa: {
-            compra: 0,
-            venta: 0,
+            buyPrice: 0,
+            sellPrice: 0,
         },
         turista: {
-            compra: 0,
-            venta: 0,
+            buyPrice: 0,
+            sellPrice: 0,
         },
         qatar: {
-            compra: 0,
-            venta: 0,
+            buyPrice: 0,
+            sellPrice: 0,
         },
-        // uva: 0
     },
     infoDolar: {},
     euro: {
-        compra: 0,
-        venta: 0,
+        buyPrice: 0,
+        sellPrice: 0,
     },
     real: {
-        compra: 0,
-        venta: 0,
+        buyPrice: 0,
+        sellPrice: 0,
     },
     evolution: {
         blue:[],
@@ -55,43 +54,65 @@ const initialState = {
 
 export default function reducerRoot (state = initialState, {type, payload}: any): any {
     switch (type){
-        case TYPES_OF_DOLARS : 
-            let oficial = payload[0].casa
-            let dolarBlue = payload[1].casa
-            let ccl = payload[3].casa
-            let bolsa = payload[4].casa
-            let turista = payload[6].casa
-            let qatar = oficial.venta && Number(oficial.venta.replace(',','.')) + Number(oficial.venta.replace(',','.'))*1
-            qatar = qatar.toString().replace('.',',')
+        case GET_ALL_CURRENCIES:
+            let oficial = payload[0]
+            let blue = payload[1]
+            let CCL = payload[2]
+            let bolsa = payload[3]
+            let turista = payload[4]
+            let qatar = payload[5]
+            let euro = payload[6]
+            let real = payload[7]
             return {
                 ...state,
                 dolar: {
-                    ...state.dolar,
-                    oficial: {
-                        compra: oficial.compra,
-                        venta: oficial.venta
-                    },
-                    blue: {
-                        compra: dolarBlue.compra,
-                        venta: dolarBlue.venta
-                    },
-                    ccl: {
-                        compra: ccl.compra,
-                        venta: ccl.venta
-                    },
-                    bolsa: {
-                        compra: bolsa.compra,
-                        venta: bolsa.venta
-                    },
-                    turista: {
-                        compra: 'No Cotiza',
-                        venta: turista.venta,
-                    },
-                    qatar: {
-                        compra: 'No Cotiza',
-                        venta: qatar
-                    }
-                }
+                    oficial,
+                    blue,
+                    CCL,
+                    bolsa,
+                    turista,
+                    qatar
+                },
+                euro,
+                real
+            }
+        case TYPES_OF_DOLARS : 
+            // let oficial = payload[0].casa
+            // let dolarBlue = payload[1].casa
+            // let ccl = payload[3].casa
+            // let bolsa = payload[4].casa
+            // let turista = payload[6].casa
+            // let qatar = oficial.sellPrice && Number(oficial.sellPrice.replace(',','.')) + Number(oficial.sellPrice.replace(',','.'))*1
+            // qatar = qatar.toString().replace('.',',')
+            return {
+                ...state,
+                // dolar: {
+                //     ...state.dolar,
+                //     oficial: {
+                //         buyPrice: oficial.buyPrice,
+                //         sellPrice: oficial.sellPrice
+                //     },
+                //     blue: {
+                //         buyPrice: dolarBlue.buyPrice,
+                //         sellPrice: dolarBlue.sellPrice
+                //     },
+                //     ccl: {
+                //         buyPrice: ccl.buyPrice,
+                //         sellPrice: ccl.sellPrice
+                //     },
+                //     bolsa: {
+                //         buyPrice: bolsa.buyPrice,
+                //         sellPrice: bolsa.sellPrice
+                //     },
+                //     turista: {
+                //         buyPrice: 'No Cotiza',
+                //         sellPrice: turista.sellPrice,
+                //     },
+                //     qatar: {
+                //         buyPrice: 'No Cotiza',
+                //         sellPrice: qatar
+                //     }
+                // }
             }
         case INFO_DOLAR_PRICE:  
             return {
@@ -100,24 +121,24 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
             }
         case EURO_PRICE: 
             const bancoNacionInfoEURO = payload.filter((obj: any) => obj.casa.nombre === 'Banco Nación');
-            const compraPriceEuro = bancoNacionInfoEURO[0].casa.compra;
-            const ventaPriceEuro = bancoNacionInfoEURO[0].casa.venta;
+            const buyPricePriceEuro = bancoNacionInfoEURO[0].casa.buyPrice;
+            const sellPricePriceEuro = bancoNacionInfoEURO[0].casa.sellPrice;
             return {
                 ...state,
                 euro: {
-                    compra: compraPriceEuro,
-                    venta: ventaPriceEuro,
+                    buyPrice: buyPricePriceEuro,
+                    sellPrice: sellPricePriceEuro,
                 }
             }
         case REAL_PRICE:
             const bancoNacionInfoReal = payload.filter((obj: any) => obj.casa.nombre === 'Banco Nación');
-            const compraPriceReal = bancoNacionInfoReal[0].casa.compra;
-            const ventaPriceReal = bancoNacionInfoReal[0].casa.venta; 
+            const buyPricePriceReal = bancoNacionInfoReal[0].casa.buyPrice;
+            const sellPricePriceReal = bancoNacionInfoReal[0].casa.sellPrice; 
             return {
                 ...state,
                 real: {
-                    compra: compraPriceReal,
-                    venta: ventaPriceReal,
+                    buyPrice: buyPricePriceReal,
+                    sellPrice: sellPricePriceReal,
                 }
             };
         case GET_ALL_DATA:
@@ -129,12 +150,12 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
             const bDailyEvolution = functionDays(blueDailyEvolution)
             const blueMonthlyEvolution = payload.valores.evolucion_dolar.blue.anio
             const bMonthlyEvolution = functionMonths(blueMonthlyEvolution)
-            const dolarEuro = payload.valores.Monedas.casa193.venta._text;
-            const dolarReal = payload.valores.Monedas.casa270.venta._text;
-            const dolarPesoChileno = payload.valores.Monedas.casa81.venta._text;
-            const dolarPesoUruguayo = payload.valores.Monedas.casa55.venta._text;
-            const pesoChilenoPrice = payload.valores.cotizador.casa308.venta._text;
-            const pesoUruguayoPrice = payload.valores.cotizador.casa307.venta._text;
+            const dolarEuro = payload.valores.Monedas.casa193.sellPrice._text;
+            const dolarReal = payload.valores.Monedas.casa270.sellPrice._text;
+            const dolarPesoChileno = payload.valores.Monedas.casa81.sellPrice._text;
+            const dolarPesoUruguayo = payload.valores.Monedas.casa55.sellPrice._text;
+            const pesoChilenoPrice = payload.valores.cotizador.casa308.sellPrice._text;
+            const pesoUruguayoPrice = payload.valores.cotizador.casa307.sellPrice._text;
             return {
                 ...state,
                 conversor: {
