@@ -1,4 +1,4 @@
-import { TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE, REAL_PRICE, GET_ALL_DATA, SET_THEME, GET_ALL_CURRENCIES } from './actions';
+import { TYPES_OF_DOLARS, INFO_DOLAR_PRICE, EURO_PRICE, REAL_PRICE, GET_ALL_DATA, SET_THEME, GET_ALL_CURRENCIES, GET_ALL_EXCHANGES, GET_ALL_EVOLUTIONS } from './actions';
 import { functionDays, functionMonths } from './reducerFunctions';
 
 const initialState = {
@@ -38,16 +38,18 @@ const initialState = {
         sellPrice: 0,
     },
     evolution: {
-        blue:[],
-        oficial: []
+        name: '',
+        days: [],
+        months: [],
+        // blue:[],
+        // oficial: [],
+        // inflacion: [],
     },
     conversor: {
         dolarReal: 0,
         dolarEuro: 0,
         dolarPesoChileno: 0,
         dolarPesoUruguayo: 0,
-        pesoChilenoPrice: 0,
-        pesoUruguayoPrice: 0,
     },
     theme: '',
 }
@@ -75,6 +77,32 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
                 },
                 euro,
                 real
+            }
+        case GET_ALL_EXCHANGES: 
+            let dolarReal = payload[1].value;
+            let dolarEuro = payload[0].value;
+            let dolarPesoChileno = payload[2].value;
+            let dolarPesoUruguayo = payload[3].value;
+            return {
+                ...state,
+                conversor: {
+                    ...state.conversor,
+                    dolarEuro,
+                    dolarReal,
+                    dolarPesoChileno, 
+                    dolarPesoUruguayo
+                }
+            }
+        case GET_ALL_EVOLUTIONS:
+            const { name, days, months } = payload;
+            return {
+                ...state,
+                evolution: {
+                    ...state.evolution,
+                    name,
+                    days,
+                    months,
+                }
             }
         case TYPES_OF_DOLARS : 
             // let oficial = payload[0].casa
@@ -142,36 +170,36 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
                 }
             };
         case GET_ALL_DATA:
-            const oficialDailyEvolution = payload.valores.evolucion_dolar.oficial.mes
-            const oDailyEvolution = functionDays(oficialDailyEvolution)
-            const oficialMonthlyEvolution = payload.valores.evolucion_dolar.oficial.anio
-            const oMonthlyEvolution = functionMonths(oficialMonthlyEvolution)
-            const blueDailyEvolution = payload.valores.evolucion_dolar.blue.mes
-            const bDailyEvolution = functionDays(blueDailyEvolution)
-            const blueMonthlyEvolution = payload.valores.evolucion_dolar.blue.anio
-            const bMonthlyEvolution = functionMonths(blueMonthlyEvolution)
-            const dolarEuro = payload.valores.Monedas.casa193.sellPrice._text;
-            const dolarReal = payload.valores.Monedas.casa270.sellPrice._text;
-            const dolarPesoChileno = payload.valores.Monedas.casa81.sellPrice._text;
-            const dolarPesoUruguayo = payload.valores.Monedas.casa55.sellPrice._text;
-            const pesoChilenoPrice = payload.valores.cotizador.casa308.sellPrice._text;
-            const pesoUruguayoPrice = payload.valores.cotizador.casa307.sellPrice._text;
-            return {
-                ...state,
-                conversor: {
-                    dolarEuro,
-                    dolarReal,
-                    dolarPesoChileno,
-                    dolarPesoUruguayo,
-                    pesoChilenoPrice,
-                    pesoUruguayoPrice
-                },
-                evolution: {
-                    ...state.evolution,
-                    oficial: [oDailyEvolution,oMonthlyEvolution],
-                    blue: [bDailyEvolution,bMonthlyEvolution]
-                }
-            }
+            // const oficialDailyEvolution = payload.valores.evolucion_dolar.oficial.mes
+            // const oDailyEvolution = functionDays(oficialDailyEvolution)
+            // const oficialMonthlyEvolution = payload.valores.evolucion_dolar.oficial.anio
+            // const oMonthlyEvolution = functionMonths(oficialMonthlyEvolution)
+            // const blueDailyEvolution = payload.valores.evolucion_dolar.blue.mes
+            // const bDailyEvolution = functionDays(blueDailyEvolution)
+            // const blueMonthlyEvolution = payload.valores.evolucion_dolar.blue.anio
+            // const bMonthlyEvolution = functionMonths(blueMonthlyEvolution)
+            // const dolarEuro = payload.valores.Monedas.casa193.sellPrice._text;
+            // const dolarReal = payload.valores.Monedas.casa270.sellPrice._text;
+            // const dolarPesoChileno = payload.valores.Monedas.casa81.sellPrice._text;
+            // const dolarPesoUruguayo = payload.valores.Monedas.casa55.sellPrice._text;
+            // const pesoChilenoPrice = payload.valores.cotizador.casa308.sellPrice._text;
+            // const pesoUruguayoPrice = payload.valores.cotizador.casa307.sellPrice._text;
+            // return {
+            //     ...state,
+            //     conversor: {
+            //         dolarEuro,
+            //         dolarReal,
+            //         dolarPesoChileno,
+            //         dolarPesoUruguayo,
+            //         pesoChilenoPrice,
+            //         pesoUruguayoPrice
+            //     },
+            //     evolution: {
+            //         ...state.evolution,
+            //         oficial: [oDailyEvolution,oMonthlyEvolution],
+            //         blue: [bDailyEvolution,bMonthlyEvolution]
+            //     }
+            // }
         case SET_THEME:
             return {
                 ...state,

@@ -16,11 +16,11 @@ export default function Table({ number, inflacion }: any) {
         dispatch(onTypesOfDolars())
     },[])
     
-    const { blue, oficial, ccl, qatar, turista }: any = dolar;
+    const { blue, oficial, CCL, qatar, turista }: any = dolar;
     if (
       !Object.keys(blue).length ||
       !Object.keys(oficial).length ||
-      !Object.keys(ccl).length ||
+      !Object.keys(CCL).length ||
       !Object.keys(turista).length
     )
     return <Loading />;
@@ -55,16 +55,16 @@ export default function Table({ number, inflacion }: any) {
                             <Text style={balanceStyle.text}>Inversión</Text>
                         </Row>
                         <Row style={balanceStyle.rightCell}>
-                            <Text style={balanceStyle.text}>{dolarConvert(blue.venta,Number(number))}</Text>
+                            <Text style={balanceStyle.text}>{dolarConvert(blue.sellPrice,Number(number))}</Text>
                         </Row>
                         <Row style={balanceStyle.rightCell}>
-                            <Text style={balanceStyle.text}>{dolarConvert(ccl.venta,Number(number))}</Text>
+                            <Text style={balanceStyle.text}>{dolarConvert(CCL.sellPrice,Number(number))}</Text>
                         </Row>
                         <Row style={balanceStyle.rightCell}>
-                            <Text style={balanceStyle.text}>{dolarConvert(turista.venta,Number(number))}</Text>
+                            <Text style={balanceStyle.text}>{dolarConvert(turista.sellPrice,Number(number))}</Text>
                         </Row>
                         <Row style={balanceStyle.rightCell}>
-                            <Text style={balanceStyle.text}>{dolarConvert(qatar.venta,Number(number))}</Text>
+                            <Text style={balanceStyle.text}>{dolarConvert(qatar.sellPrice,Number(number))}</Text>
                         </Row>
                         <Row style={balanceStyle.rightCell}>
                             <Col size={25}>

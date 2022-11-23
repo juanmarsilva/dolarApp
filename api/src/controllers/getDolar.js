@@ -5,9 +5,9 @@ const getAllDolars = async (req, res) => {
         const dbDolar = await Currency.findAll()
         const response = dbDolar.map(dolar => {
             return {
-                nombre: dolar.dataValues.type,
-                compra: dolar.dataValues.buyPrice,
-                venta: dolar.dataValues.sellPrice}
+                name: dolar.dataValues.type,
+                buyPrice: dolar.dataValues.buyPrice,
+                sellPrice: dolar.dataValues.sellPrice}
         })
         res.send(response)
         }
