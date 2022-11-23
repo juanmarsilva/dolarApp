@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './DetailScreenStyles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Dimensions } from "react-native";
 import { LineChart } from 'react-native-chart-kit'
 import PersonalButton from '../../Components/Buttons/Button';
 import { colors } from '../../App.style';
+import { getAllEvolutions } from '../../Redux/actions';
 
 const DetailScreen = ({ route }: any) => {
     const type = route.params.tipo;
@@ -13,7 +14,6 @@ const DetailScreen = ({ route }: any) => {
     const [days, months] = dolar[type]
     const [active, setActive] = useState('day')
     const [date, setDate] = useState(days)
-
 
     const onChangeChart = (type:string) => {
         if(type === 'month') {

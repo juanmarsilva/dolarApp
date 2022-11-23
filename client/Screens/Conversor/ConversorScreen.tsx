@@ -15,8 +15,8 @@ interface input {
 const ConversorScreen = () => {
 
     const { dolarEuro, dolarReal, dolarPesoChileno, dolarPesoUruguayo }:any = useSelector<any>(state => state.conversor);
-    const arrayOfNumbers = [dolarEuro, dolarReal, dolarPesoChileno, dolarPesoUruguayo]
-    const initialNumber = arrayOfNumbers.map(money => money.slice(0,money.length-1))
+    const arrayOfNumbers = [dolarEuro, dolarReal, dolarPesoChileno, dolarPesoUruguayo];
+    const initialNumber = arrayOfNumbers?.map(money => money.slice(0,money.length-1))
 
     const [input, setInput] = useState<input>({
         dolar: '1',
