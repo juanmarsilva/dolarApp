@@ -33,7 +33,7 @@ export default function Home({ navigation }: any) {
 
   const seeEvolution = (tipo:string) => {
       dispatch(getAllEvolutions( tipo ))
-      navigation.navigate("Detail",{tipo})
+      navigation.navigate("Detail")
   }
   
   return (

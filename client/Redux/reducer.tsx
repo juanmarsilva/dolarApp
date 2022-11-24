@@ -97,8 +97,8 @@ export default function reducerRoot (state = initialState, {type, payload}: any)
                 evolution: {
                     ...state.evolution,
                     name,
-                    days,
-                    months,
+                    days: days && functionDays(days),
+                    months: name !== 'inflacion'? functionMonths(months): months,
                 }
             }
         case SET_THEME:

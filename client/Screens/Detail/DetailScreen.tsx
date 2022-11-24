@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { styles } from './DetailScreenStyles';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Dimensions } from "react-native";
 import { LineChart } from 'react-native-chart-kit'
 import PersonalButton from '../../Components/Buttons/Button';
 import { colors } from '../../App.style';
-import { getAllEvolutions } from '../../Redux/actions';
+import { Loading } from '../../Components/Loading/Loading';
 
-const DetailScreen = ({ route }: any) => {
-    const type = route.params.tipo;
-    const dolar = useSelector<any>(state => state.evolution);
-    const [days, months] = dolar[type]
-    const [active, setActive] = useState('day')
+const DetailScreen = () => {
+    const {days, months, name}:any = useSelector<any>(state => state.evolution);
     const [date, setDate] = useState(days)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        if(name){
+            setLoading(false)
+            setDate(days)
+        } 
+    },[name,days])
+
+    if(loading) return <Loading/>
 
     const onChangeChart = (type:string) => {
-        if(type === 'month') {
+        if(type === 'months') {
             setDate(months)
-            setActive('month')
         }
         else {
             setDate(days)
-            setActive('day')
         }
     }
 
@@ -40,7 +45,7 @@ const DetailScreen = ({ route }: any) => {
 
     return (
         <View style={styles.container} >
-            <Text style={styles.title} > {`Dolar ${type}`} </Text>
+            <Text style={styles.title} > {`Dolar ${name}`} </Text>
             <View style={styles.containerGraf}>
                 <LineChart
                     data={data}
@@ -65,13 +70,13 @@ const DetailScreen = ({ route }: any) => {
             </View>
             <PersonalButton 
                 text="Diario"
-                color={active === 'day'? colors.selectedIntense : colors.selected}
-                onPress={()=>onChangeChart('day')}
+                color={date === days? colors.selectedIntense : colors.selected}
+                onPress={()=>onChangeChart('days')}
             />
             <PersonalButton 
                 text="Mensual"
-                color={active === 'month'? colors.selectedIntense : colors.selected}
-                onPress={()=>onChangeChart('month')}
+                color={date === months? colors.selectedIntense : colors.selected}
+                onPress={()=>onChangeChart('months')}
             />
         </View>
     );
