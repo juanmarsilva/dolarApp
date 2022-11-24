@@ -26,9 +26,9 @@ const update = async () => {
 
 // Syncing all the models at once.
 connexion.sync({ force: false }).then(() => {
-    server.listen(PORT, async () => {
+    server.listen(PORT, () => {
         console.log(`%s listening at ${PORT}`);
         // eslint-disable-line no-console
-        await update()
+        update()
     });
 });

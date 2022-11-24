@@ -5,14 +5,19 @@ const { BRCA_TOKEN } = process.env
 
 
 const getAllCurrencies = async () => {
-    const allData = await getAllData()
-    const dolarData = getPrices(allData)
-    await Currency.bulkCreate(dolarData)
-    const evolutionDolar = getEvolution(allData)
-    const evolutionInflation = await getInflation()
-    await Evolution.bulkCreate([...evolutionDolar,evolutionInflation])
-    const exchanges = getExchanges(allData)
-    await Exchanges.bulkCreate(exchanges)
+    try{
+        const allData = await getAllData()
+        const dolarData = getPrices(allData)
+        await Currency.bulkCreate(dolarData)
+        const evolutionDolar = getEvolution(allData)
+        const evolutionInflation = await getInflation()
+        await Evolution.bulkCreate([...evolutionDolar,evolutionInflation])
+        const exchanges = getExchanges(allData)
+        await Exchanges.bulkCreate(exchanges)
+    }
+    catch (error) {
+        console.log(error)
+    }
 };
 
 const getAllData = async () => {
@@ -146,49 +151,54 @@ const getExchanges = (allData) => {
 }
 
 const updateDatabase = async () => {
-    const allData = await getAllData()
-    if (allData) {
-        const dolarData = getPrices(allData)
-        dolarData.forEach(async dolar => {
-            const dolarDB = await Currency.findOne({ 
-                where: { 
-                    type: dolar.type
-                }
+    try{
+        const allData = await getAllData()
+        if (allData) {
+            const dolarData = getPrices(allData)
+            dolarData.forEach(async dolar => {
+                const dolarDB = await Currency.findOne({ 
+                    where: { 
+                        type: dolar.type
+                    }
+                })
+                dolarDB.set({
+                    buyPrice: dolar.buyPrice,
+                    sellPrice: dolar.sellPrice
             })
-            dolarDB.set({
-                buyPrice: dolar.buyPrice,
-                sellPrice: dolar.sellPrice
-        })
-        await dolarDB.save()
-        })
-        const evolutionDolar = getEvolution(allData)
-        const evolutionInflation = await getInflation()
-        let allEvolution = evolutionDolar
-        evolutionInflation && (allEvolution = [...evolutionDolar,evolutionInflation])
-        allEvolution.forEach(async type => {
-            const evolutionDB = await Evolution.findOne({
-                where: {
-                    name: type.name
-                }
+            await dolarDB.save()
             })
-            evolutionDB.set({
-                months: type.months,
-                days: type.days
+            const evolutionDolar = getEvolution(allData)
+            const evolutionInflation = await getInflation()
+            let allEvolution = evolutionDolar
+            evolutionInflation && (allEvolution = [...evolutionDolar,evolutionInflation])
+            allEvolution.forEach(async type => {
+                const evolutionDB = await Evolution.findOne({
+                    where: {
+                        name: type.name
+                    }
+                })
+                evolutionDB.set({
+                    months: type.months,
+                    days: type.days
+                })
+                await evolutionDB.save()
             })
-            await evolutionDB.save()
-        })
-        const exchanges = getExchanges(allData)
-        exchanges.forEach(async type => {
-            const exchangeDB = await Exchanges.findOne({
-                where: {
-                    name: type.name
-                }
+            const exchanges = getExchanges(allData)
+            exchanges.forEach(async type => {
+                const exchangeDB = await Exchanges.findOne({
+                    where: {
+                        name: type.name
+                    }
+                })
+                exchangeDB.set({
+                    value: type.value
+                })
+                await exchangeDB.save()
             })
-            exchangeDB.set({
-                value: type.value
-            })
-            await exchangeDB.save()
-        })
+        }
+    }
+    catch (error) {
+        console.log(error)
     }
 }
 
