@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { Types } from "../../Components/Types/Types";
 import { styles } from "./HomeScreenStyles";
 import { useDispatch, useSelector } from "react-redux";
-import { euroPrice, onTypesOfDolars, realPrice, getAllData, getAllCurrencies, getAllExchanges, getAllEvolutions } from '../../Redux/actions';
+import { getAllCurrencies, getAllEvolutions, getAllExchanges } from '../../Redux/actions';
 import { Loading } from "../../Components/Loading/Loading";
 import { useState } from 'react';
 import PersonalButton from "../../Components/Buttons/Button";
@@ -23,9 +23,6 @@ export default function Home({ navigation }: any) {
   useEffect(() => {
     dispatch(getAllCurrencies());
     dispatch(getAllExchanges());
-    // dispatch(realPrice());
-    // dispatch(getAllData());
-    // return dispatch(euroPrice());
   }, []);
 
   useEffect(() => {
@@ -35,9 +32,8 @@ export default function Home({ navigation }: any) {
   if(loading) return <Loading />
 
   const seeEvolution = (tipo:string) => {
-      // dispatch(getAllData())
       dispatch(getAllEvolutions( tipo ))
-      navigation.navigate("Detail",{tipo})
+      navigation.navigate("Detail")
   }
   
   return (

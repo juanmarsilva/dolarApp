@@ -3,17 +3,33 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Text } from 'react-native';
 import { Col, Row, Grid } from 'react-native-easy-grid';
 import { plazoFijo, plazoUVA, dolarConvert } from './BalanceFunctions';
-import { onTypesOfDolars } from '../../Redux/actions';
+// import { onTypesOfDolars } from '../../Redux/actions';
 import { Loading } from '../../Components/Loading/Loading';
 import balanceStyle from './BalanceScreenStyles';
+import { getAllCurrencies, getAllEvolutions } from '../../Redux/actions';
 
-export default function Table({ number, inflacion }: any) {
-    const uva = inflacion ? inflacion : 0
+interface Structure {
+    name: string;
+    months: Array<any>;
+    days: null
+}
+interface State {
+    evolution: Structure
+}
+
+export default function Table({ number }: any) {
+    const inflacion = useSelector((state:State) => state.evolution)
+    const lastThreeMonthsInflation = inflacion.months.slice(-3)
+    const acumulated = lastThreeMonthsInflation.reduce((acc:number, curr:number) => {
+        return acc + Object.values(curr)[0]
+    },0)
+    const uva = acumulated + 0.25
     const dolar = useSelector<any>((state) => state.dolar);
     const dispatch = useDispatch<any>();
 
     useEffect(()=>{
-        dispatch(onTypesOfDolars())
+        dispatch(getAllCurrencies())
+        dispatch(getAllEvolutions('inflacion'))
     },[])
     
     const { blue, oficial, CCL, qatar, turista }: any = dolar;

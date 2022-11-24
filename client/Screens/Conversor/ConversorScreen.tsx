@@ -3,21 +3,20 @@ import { View, Text, TextInput, ScrollView } from 'react-native';
 import { styles } from "./ConversorScreenStyles";
 import { useSelector } from "react-redux";
 import { addDot, addTwoDecimals } from '../BalanceScreen/BalanceFunctions';
+import { Loading } from "../../Components/Loading/Loading";
 
 interface input {
-    dolar: any;
-    euro: any;
-    real: any;
-    pesoChileno: any;
-    pesoUruguayo: any;
+    dolar: string;
+    euro: string;
+    real: string;
+    pesoChileno: string;
+    pesoUruguayo: string;
 }
 
 const ConversorScreen = () => {
-
     const { dolarEuro, dolarReal, dolarPesoChileno, dolarPesoUruguayo }:any = useSelector<any>(state => state.conversor);
-    const arrayOfNumbers = [dolarEuro, dolarReal, dolarPesoChileno, dolarPesoUruguayo];
-    const initialNumber = arrayOfNumbers?.map(money => money.slice(0,money.length-1))
-
+    const arrayOfNumbers = [dolarEuro, dolarReal, dolarPesoChileno, dolarPesoUruguayo]
+    const initialNumber = arrayOfNumbers?.map((money:any) => money.slice(0,money.length-1))
     const [input, setInput] = useState<input>({
         dolar: '1',
         euro: initialNumber[0],
@@ -25,6 +24,8 @@ const ConversorScreen = () => {
         pesoChileno: initialNumber[2],
         pesoUruguayo: initialNumber[3],
     });
+
+    if(!arrayOfNumbers[0]) return <Loading/>
 
     const replaceComaAndTurnNumber = (string:string) => {
         const withoutComa = string.replace(',','.')
