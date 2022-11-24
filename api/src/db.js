@@ -4,16 +4,12 @@ const path = require('path');
 const {
     DB_USER, DB_PASSWORD, DB_HOST, DATABASE, DB_NAME,
 } = process.env;
-
+console.log('todo process.env', process.env)
+console.log('este es el NODE_ENV', process.env.NODE_ENV)
 let sequelize =
     process.env.NODE_ENV === "production"
   // en Railway
     ? new Sequelize(`${process.env.DATABASE_URL}`)
-    // : new Sequelize(
-    //     `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}`,
-    //     { logging: false, native: false }
-      // );
-
 // en heroku
     // ? 
     // new Sequelize({
