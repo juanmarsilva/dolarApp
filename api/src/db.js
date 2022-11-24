@@ -9,11 +9,6 @@ let sequelize =
     process.env.NODE_ENV === "production"
   // en Railway
     ? new Sequelize(`${process.env.DATABASE_URL}`)
-    // : new Sequelize(
-    //     `postgres://${PGUSER}:${PGPASSWORD}@${PGHOST}/${PGDATABASE}`,
-    //     { logging: false, native: false }
-      // );
-
 // en heroku
     // ? 
     // new Sequelize({
