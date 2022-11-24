@@ -4,6 +4,7 @@ const path = require('path');
 const {
     DB_USER, DB_PASSWORD, DB_HOST, DATABASE, DB_NAME,
 } = process.env;
+console.log('todo process.env', process.env)
 console.log('este es el NODE_ENV', process.env.NODE_ENV)
 let sequelize =
     process.env.NODE_ENV === "production"
