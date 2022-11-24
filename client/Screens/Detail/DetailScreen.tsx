@@ -14,11 +14,11 @@ const DetailScreen = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        if(name){
+        if(days.length){
             setLoading(false)
             setDate(days)
         } 
-    },[name,days])
+    },[days])
 
     if(loading) return <Loading/>
 
@@ -42,7 +42,6 @@ const DetailScreen = () => {
             }
         ]
     }
-
     return (
         <View style={styles.container} >
             <Text style={styles.title} > {`Dolar ${name}`} </Text>
