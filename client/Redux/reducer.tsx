@@ -54,14 +54,36 @@ const initialState = {
 export default function reducerRoot (state = initialState, {type, payload}: any): any {
     switch (type){
         case GET_ALL_CURRENCIES:
-            let oficial = payload[0]
-            let blue = payload[1]
-            let CCL = payload[2]
-            let bolsa = payload[3]
-            let turista = payload[4]
-            let qatar = payload[5]
-            let euro = payload[6]
-            let real = payload[7]
+            let oficial = null
+            let blue = null
+            let CCL = null
+            let bolsa = null
+            let turista = null
+            let qatar = null
+            let euro = null
+            let real = null
+            payload.forEach((money:any) => {
+                switch (money.name){
+                    case 'Dolar Oficial':
+                        return oficial = money
+                    case 'Dolar Blue':
+                        return blue = money
+                    case 'Euro oficial':
+                        return euro = money
+                    case 'Real oficial':
+                        return real = money
+                    case 'Dolar CCL':
+                        return CCL = money
+                    case 'Dolar Bolsa':
+                        return bolsa = money
+                    case 'Dolar turista':
+                        return turista = money
+                    case 'Dolar Qatar':
+                        return qatar = money
+                    default:
+                        return money
+                }
+            })
             return {
                 ...state,
                 dolar: {

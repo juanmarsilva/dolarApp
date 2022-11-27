@@ -4,7 +4,7 @@ export const GET_ALL_CURRENCIES = 'GET_ALL_CURRENCIES';
 export const GET_ALL_EXCHANGES = 'GET_ALL_EXCHANGES';
 export const GET_ALL_EVOLUTIONS = 'GET_ALL_EVOLUTIONS';
 
-const { IP } = process.env
+const { API_ROUTE } = process.env
 
 export const setTheme = (theme: string = 'dark') => {
     return {
@@ -16,7 +16,7 @@ export const setTheme = (theme: string = 'dark') => {
 export const getAllCurrencies = () => {
     return async function (dispatch:any) {
         try {
-            const { data } = await axios(`http://${IP}:3001/dolar`)
+            const { data } = await axios(`${API_ROUTE}/dolar`)
             return dispatch ({
                 type: GET_ALL_CURRENCIES,
                 payload: data
@@ -31,7 +31,7 @@ export const getAllCurrencies = () => {
 export const getAllExchanges = () => {
     return async function(dispatch: any) {
         try {
-            const { data } = await axios(`http://${IP}:3001/exchanges`)
+            const { data } = await axios(`${API_ROUTE}/exchanges`)
             return dispatch({
                 type: GET_ALL_EXCHANGES,
                 payload: data
@@ -45,7 +45,7 @@ export const getAllExchanges = () => {
 export const getAllEvolutions = ( type: string ) => {
     return async function(dispatch: any) {
         try {
-            const { data } = await axios(`http://${IP}:3001/evolution?type=${ type }`);
+            const { data } = await axios(`${API_ROUTE}/evolution?type=${ type }`);
             return dispatch({
                 type: GET_ALL_EVOLUTIONS,
                 payload: data
