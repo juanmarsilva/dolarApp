@@ -1,9 +1,14 @@
 {
+    "cli": {
+        "version": ">=1.0.0"
+    },
     "build": {
-      "production": {
-        "env": {
-          "API_ROUTE": "https://dolarapp.onrender.com"
-        }
-      }
+        "production": {
+            "env": {
+                "API_ROUTE": "https://dolarapp.onrender.com"
+            }
+            }
+    },
+    "submit": {
     }
-  }
+}
