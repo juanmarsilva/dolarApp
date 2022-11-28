@@ -19,15 +19,14 @@ export default function Home({ navigation }: any) {
   const [ loading, setLoading ] = useState<boolean>(true);
   
   const { blue, oficial, CCL, bolsa, turista, qatar }: any = dolar;
-  
   useEffect(() => {
     dispatch(getAllCurrencies());
     dispatch(getAllExchanges());
   }, []);
 
   useEffect(() => {
-    qatar.sellPrice && euro.buyPrice && real.buyPrice && setLoading(false)
-  }, [qatar, euro, real])
+    qatar.sellPrice && setLoading(false)
+  }, [qatar])
 
   if(loading) return <Loading />
 

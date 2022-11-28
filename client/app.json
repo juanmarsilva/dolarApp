@@ -1,15 +1,17 @@
 {
   "expo": {
-    "name": "dolarApp",
-    "slug": "dolarApp",
+    "name": "Dolar App",
+    "slug": "dolar-app",
+    "privacy": "public",
+    "description": "Mantente actualizado del dolar, compara plazos fijos y otras monedas" ,
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon.jpeg",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#344e41"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,7 +24,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/iconi.png",
         "backgroundColor": "#FFFFFF"
       }
     },
