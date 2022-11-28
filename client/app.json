@@ -6,7 +6,7 @@
     "description": "Mantente actualizado del dolar, compara plazos fijos y otras monedas",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.jpeg",
+    "icon": "./assets/iconi.png",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
@@ -21,13 +21,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.felipejure.dolarapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/iconi.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.felipejure.dolarapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"

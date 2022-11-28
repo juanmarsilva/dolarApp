@@ -5,7 +5,10 @@
   "scripts": {
     "start": "expo start",
     "login": "expo login",
-    "publish": "eas update",
+    "publish": "eas update --branch dev --message",
+    "configure": "eas build:configure",
+    "build": "eas build --platform all",
+    "doctor": "expo-cli doctor",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
@@ -19,10 +22,10 @@
     "@reduxjs/toolkit": "^1.8.6",
     "axios": "^1.1.3",
     "dotenv": "^16.0.3",
-    "eas-cli": "^2.8.0",
     "expo": "~46.0.16",
     "expo-cli": "^6.0.8",
     "expo-status-bar": "~1.4.0",
+    "expo-updates": "~0.14.7",
     "lottie-react-native": "^5.1.3",
     "react": "18.0.0",
     "react-dom": "18.0.0",
@@ -40,8 +43,7 @@
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.4.1",
-    "expo-updates": "~0.14.7"
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -57,7 +59,10 @@
   },
   "resolutions": {
     "@types/react": "17.0.2",
-    "@types/react-dom": "17.0.2"
+    "@types/react-dom": "17.0.2",
+    "@expo/config-plugins": "^4.1.0",
+    "@expo/prebuild-config": "^4.0.0",
+    "expo-modules-autolinking": "~0.8.1"
   },
   "private": true
 }

@@ -2,13 +2,26 @@
     "cli": {
         "version": ">=1.0.0"
     },
+    "submit": {
+    },
     "build": {
+        "preview": {
+            "android": {
+                "buildType": "apk"
+            }
+        },
+        "preview2": {
+            "android": {
+                "gradleCommand": ":app:assembleRelease"
+            }
+        },
+        "preview3": {
+            "developmentClient": true
+        },
         "production": {
             "env": {
                 "API_ROUTE": "https://dolarapp.onrender.com"
             }
-            }
-    },
-    "submit": {
+        }
     }
 }
