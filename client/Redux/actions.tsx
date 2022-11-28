@@ -17,6 +17,7 @@ export const getAllCurrencies = () => {
     return async function (dispatch:any) {
         try {
             const { data } = await axios(`${API_ROUTE}/dolar`)
+            console.log(data)
             return dispatch ({
                 type: GET_ALL_CURRENCIES,
                 payload: data
