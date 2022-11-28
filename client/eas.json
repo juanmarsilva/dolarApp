@@ -1,0 +1,9 @@
+{
+    "build": {
+      "production": {
+        "env": {
+          "API_ROUTE": "https://dolarapp.onrender.com"
+        }
+      }
+    }
+  }

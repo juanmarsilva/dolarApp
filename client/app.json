@@ -3,7 +3,7 @@
     "name": "Dolar App",
     "slug": "dolar-app",
     "privacy": "public",
-    "description": "Mantente actualizado del dolar, compara plazos fijos y otras monedas" ,
+    "description": "Mantente actualizado del dolar, compara plazos fijos y otras monedas",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.jpeg",
@@ -14,7 +14,8 @@
       "backgroundColor": "#344e41"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/bec165c8-1942-4c1c-b05d-246cc384340d"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -33,7 +34,19 @@
     },
     "packagerOpts": {
       "config": "metro.config.js",
-      "sourceExts": ["ts", "tsx", "css"]
+      "sourceExts": [
+        "ts",
+        "tsx",
+        "css"
+      ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "bec165c8-1942-4c1c-b05d-246cc384340d"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
     }
   }
 }
