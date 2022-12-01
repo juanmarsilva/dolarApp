@@ -89,8 +89,10 @@ const descomposition = (name, objectEvolution) => {
     let countMonths = 0
     const days = Object.values(objectEvolution.mes).map(value => {
         countDays ++
-        return {
-            [countDays]: Number(value._text.replace(',','.'))
+        if (value._text) {
+            return {
+                [countDays]: Number(value._text.replace(',','.'))
+            }
         }
     })
     const months = Object.values(objectEvolution.anio).map(value => {
@@ -155,46 +157,51 @@ const updateDatabase = async () => {
         const allData = await getAllData()
         if (allData) {
             const dolarData = getPrices(allData)
-            dolarData.forEach(async dolar => {
-                const dolarDB = await Currency.findOne({ 
-                    where: { 
-                        type: dolar.type
-                    }
+            Promise.all(dolarData.map(dolar => {
+                return async () => {
+                    const dolarDB = await Currency.findOne({ 
+                        where: { 
+                            type: dolar.type
+                        }
+                    })
+                    dolarDB.set({
+                        buyPrice: dolar.buyPrice,
+                        sellPrice: dolar.sellPrice
                 })
-                dolarDB.set({
-                    buyPrice: dolar.buyPrice,
-                    sellPrice: dolar.sellPrice
-            })
-            await dolarDB.save()
-            })
+                await dolarDB.save()
+                }
+            }))
             const evolutionDolar = getEvolution(allData)
             const evolutionInflation = await getInflation()
-            let allEvolution = evolutionDolar
-            evolutionInflation && (allEvolution = [...evolutionDolar,evolutionInflation])
-            allEvolution.forEach(async type => {
-                const evolutionDB = await Evolution.findOne({
-                    where: {
-                        name: type.name
-                    }
-                })
-                evolutionDB.set({
-                    months: type.months,
-                    days: type.days
-                })
-                await evolutionDB.save()
-            })
+            let allEvolution = evolutionInflation? [...evolutionDolar,evolutionInflation] : evolutionDolar
+            Promise.all(allEvolution.map(type => {
+                return async () => {
+                    const evolutionDB = await Evolution.findOne({
+                        where: {
+                            name: type.name
+                        }
+                    })
+                    evolutionDB.set({
+                        months: type.months,
+                        days: type.days
+                    })
+                    await evolutionDB.save()
+                }
+            }))
             const exchanges = getExchanges(allData)
-            exchanges.forEach(async type => {
-                const exchangeDB = await Exchanges.findOne({
-                    where: {
-                        name: type.name
-                    }
-                })
-                exchangeDB.set({
-                    value: type.value
-                })
-                await exchangeDB.save()
-            })
+            Promise.all(exchanges.map(type => {
+                return async () => {
+                    const exchangeDB = await Exchanges.findOne({
+                        where: {
+                            name: type.name
+                        }
+                    })
+                    exchangeDB.set({
+                        value: type.value
+                    })
+                    await exchangeDB.save()
+                }
+                }))
         }
     }
     catch (error) {
