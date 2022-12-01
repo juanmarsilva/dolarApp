@@ -81,6 +81,7 @@ const getEvolution = (allData) => {
     const blueEvolution = allData.cotiza.evolucion_dolar.blue
     const oficialArray = descomposition('oficial',oficialEvolution)
     const blueArray = descomposition('blue',blueEvolution)
+    console.log(oficialArray)
     return [oficialArray, blueArray]
 }
 
@@ -93,6 +94,9 @@ const descomposition = (name, objectEvolution) => {
             return {
                 [countDays]: Number(value._text.replace(',','.'))
             }
+        }
+        else {
+            return {[countDays]: null}
         }
     })
     const months = Object.values(objectEvolution.anio).map(value => {
