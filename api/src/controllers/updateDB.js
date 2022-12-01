@@ -81,7 +81,6 @@ const getEvolution = (allData) => {
     const blueEvolution = allData.cotiza.evolucion_dolar.blue
     const oficialArray = descomposition('oficial',oficialEvolution)
     const blueArray = descomposition('blue',blueEvolution)
-    console.log(oficialArray)
     return [oficialArray, blueArray]
 }
 

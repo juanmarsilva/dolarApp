@@ -9,9 +9,8 @@ const getEvolution = async (req, res) => {
                     name : type
                 }
             })
-            console.log(dbEvolution)
             if(dbEvolution.name === 'inflacion') dbEvolution.days = []
-            else dbEvolution.days = dbEvolution.days.filter(day => day !== null)
+            else dbEvolution.days = dbEvolution.days.filter(day => Object.entries(day)[0][1] !== null)
             res.send(dbEvolution)
         }
         else{
