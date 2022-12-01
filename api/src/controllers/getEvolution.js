@@ -9,7 +9,9 @@ const getEvolution = async (req, res) => {
                     name : type
                 }
             })
+            console.log(dbEvolution)
             if(dbEvolution.name === 'inflacion') dbEvolution.days = []
+            else dbEvolution.days = dbEvolution.days.filter(day => day !== null)
             res.send(dbEvolution)
         }
         else{

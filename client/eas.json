@@ -7,20 +7,22 @@
     "build": {
         "preview": {
             "android": {
-                "buildType": "apk"
-            }
-        },
-        "preview2": {
-            "android": {
                 "gradleCommand": ":app:assembleRelease"
             }
         },
-        "preview3": {
-            "developmentClient": true
+        "development": {
+            "developmentClient": true,
+            "distribution": "internal"
         },
         "production": {
             "env": {
                 "API_ROUTE": "https://dolarapp.onrender.com"
+            },
+            "android": {
+                "buildType": "apk"
+            },
+            "ios": {
+                "simulator": true
             }
         }
     }

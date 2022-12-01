@@ -6,7 +6,7 @@
     "description": "Mantente actualizado del dolar, compara plazos fijos y otras monedas",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/iconi.png",
+    "icon": "./assets/icon.jpeg",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/splash.png",
@@ -26,7 +26,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/iconi.png",
+        "foregroundImage": "./assets/favicon.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.felipejure.dolarapp"
